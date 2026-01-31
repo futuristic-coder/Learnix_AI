@@ -17,10 +17,10 @@ import ProfilePage from "./pages/Profile/ProfilePage";
 import QuizResultPage from "./pages/Quizzes/QuizResultPage";
 import QuizTakePage from "./pages/Quizzes/QuizTakePage";
 import ProctedRoute from "./components/auth/ProctedRoute";
+import { useAuth } from "./context/AuthContent";
 
 const App = () => {
-  const isAuthenticated = true;
-  const loading = false;
+  const {isAuthenticated, loading} = useAuth();
 
   if (loading) {
     return (
