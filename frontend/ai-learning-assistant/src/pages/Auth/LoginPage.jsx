@@ -21,13 +21,19 @@ const LoginPage = () => {
     setLoading(true);
 
     try {
-      const { token, user } = await authService.login(email, password);
-      login(user, token);
-      toast.success("Login Successful");
-      navigate("/dashboard");
+      const response = await authService.login(email, password);
+      // Backend returns: { success, user, token, message }
+      if (response.success && response.user && response.token) {
+        login(response.user, response.token);
+        toast.success(response.message || "Login Successful");
+        navigate("/dashboard");
+      } else {
+        throw new Error(response.error || "Invalid response from server");
+      }
     } catch (error) {
-      setError(error.message || "Login Failed. Please check your credentials");
-      toast.error(error.message || "Failed to login");
+      const errorMsg = error.error || error.message || "Login Failed. Please check your credentials";
+      setError(errorMsg);
+      toast.error(errorMsg);
     } finally {
       setLoading(false);
     }
