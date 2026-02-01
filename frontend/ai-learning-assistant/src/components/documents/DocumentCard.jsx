@@ -21,7 +21,11 @@ const formatFileSize = (bytes) => {
 
 const DocumentCard = ({ document, onDelete }) => {
   const navigate = useNavigate();
-  const handleNavigate = (e) => {
+   
+  const handleNavigate = () => {
+      navigate(`/documents/${document._id}`);
+  };
+  const handleDelete = (e) => {
     e.stopPropagation();
     onDelete(document);
   };
@@ -74,6 +78,7 @@ const DocumentCard = ({ document, onDelete }) => {
           )}
         </div>
       </div>
+      
     </div>
   );
 };

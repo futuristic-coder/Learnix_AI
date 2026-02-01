@@ -80,17 +80,19 @@ const DocumentListPage = () => {
     if (!selectedDoc) return;
     setDeleting(true);
     try {
-      await documentService.deleteDocument(selectedDoc.id);
+      await documentService.deleteDocument(selectedDoc._id);
       toast.success("Document deleted successfully.");
       setIsDeleteModalOpen(false);
       setSelectedDoc(null);
-      setDocuments(documents.filter((d) => d.id !== selectedDoc.id));
+      setDocuments(documents.filter((d) => d._id !== selectedDoc._id));
     } catch (error) {
-      toast.error("Failed to delete document.");
+      toast.error(error.message || "Failed to delete document.");
     } finally {
       setDeleting(false);
     }
   };
+
+
   const renderContent = () => {
     if (loading) {
       return (
@@ -122,7 +124,7 @@ const DocumentListPage = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {documents?.map((doc) => (
           <DocumentCard
-            key={doc.id}
+            key={doc._id}
             document={doc}
             onDelete={handleDeleteDocument}
           />
@@ -146,8 +148,8 @@ const DocumentListPage = () => {
             </Button>
           )}
         </div>
-      </div>
       {renderContent()}
+      </div>
       {isUploadModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
           <div className="w-full max-w-xl bg-white rounded-2xl shadow-xl border border-slate-200 p-6 relative">

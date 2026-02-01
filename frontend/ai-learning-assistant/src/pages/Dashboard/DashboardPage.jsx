@@ -12,7 +12,7 @@ import {
 
 const DashboardPage = () => {
   const [dashboardData, setDashboardData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProgressData = async () => {

@@ -48,7 +48,7 @@ const App = () => {
         {/* Protected Routes */}
         <Route element={<ProctedRoute />}>
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/document" element={<DocumentListPage />} />
+          <Route path="/documents" element={<DocumentListPage />} />
           <Route path="/documents/:id" element={<DocumentDetailPage />} />
           <Route path="/flashcards" element={<FlashcardsListPage />} />
           <Route path="/documents/:id/flashcards" element={<FlashcardPage />} />

@@ -6,12 +6,21 @@ import toast from "react-hot-toast";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import PageHeader from "../../components/common/PageHeader";
 import Tabs from "../../components/common/Tabs";
+import ChatInterface from "../../components/chats/ChatInterface";
 
 const DocumentDetailPage = () => {
   const { id } = useParams();
   const [document, setDocument] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("Content");
+  const [activeTab, setActiveTab] = useState(() => {
+    return localStorage.getItem(`doc-tab-${id}`) || "Content";
+  });
+
+  // Save active tab to localStorage
+  const handleTabChange = (tabName) => {
+    setActiveTab(tabName);
+    localStorage.setItem(`doc-tab-${id}`, tabName);
+  };
 
   useEffect(() => {
     const fetchDocumentDetails = async () => {
@@ -82,7 +91,7 @@ const DocumentDetailPage = () => {
   };
 
   const renderChat = () => {
-    return "renderChat";
+    return <ChatInterface documentId={id} />;
   };
 
   const renderAIActions = () => {
@@ -124,7 +133,7 @@ const DocumentDetailPage = () => {
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
         <PageHeader title={document.data.title} />
       </div>
-      <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
+      <Tabs tabs={tabs} activeTab={activeTab} onTabChange={handleTabChange} />
     </div>
   );
 };
