@@ -37,16 +37,11 @@ const RegisterPage = () => {
     setLoading(true);
 
     try {
-      const response = await authService.register(username, email, password);
-      // Backend returns: { success, data: { user, token }, message }
-      if (response.success) {
-        toast.success(response.message || "Registration Successful! Please Login.");
-        navigate("/login");
-      } else {
-        throw new Error(response.error || "Invalid response from server");
-      }
+      await authService.register(username,email,password);
+      toast.success("Registration successful! Please Login.");
+      navigate("/login");
     } catch (error) {
-      const errorMsg = error.error || error.message || "Registration Failed. Please try again.";
+      const errorMsg =error.message || "Registration Failed. Please try again.";
       setError(errorMsg);
       toast.error(errorMsg);
     } finally {
