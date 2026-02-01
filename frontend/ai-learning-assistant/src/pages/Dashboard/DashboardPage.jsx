@@ -22,8 +22,9 @@ const DashboardPage = () => {
 
         setDashboardData(data.data);
       } catch (error) {
-        toast.error("Failed to load dashboard data. Please try again later.");
-        console.error(error);
+        const errorMessage = error.message || "Failed to load dashboard data. Please try again later.";
+        toast.error(errorMessage);
+        console.error("Dashboard Error:", error);
       } finally {
         setLoading(false);
       }

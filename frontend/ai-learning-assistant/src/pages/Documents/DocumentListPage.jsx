@@ -24,10 +24,11 @@ const DocumentListPage = () => {
   const fetchDocuments = async () => {
     try {
       const data = await documentService.getDocuments();
-      setDocuments(data);
+      setDocuments(data || []);
     } catch (error) {
-      toast.error("Failed to fetch documents.");
-      console.error(error);
+      const errorMessage = error.message || "Failed to fetch documents.";
+      toast.error(errorMessage);
+      console.error("Document Fetch Error:", error);
     } finally {
       setLoading(false);
     }
@@ -65,7 +66,8 @@ const DocumentListPage = () => {
       setLoading(true);
       fetchDocuments();
     } catch (error) {
-      toast.error("Failed to upload document.");
+      const errorMessage = error.message || "Failed to upload document.";
+      toast.error(errorMessage);
     } finally {
       setUploading(false);
     }
