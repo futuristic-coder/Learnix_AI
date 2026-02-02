@@ -6,7 +6,10 @@ const Modal = ({ isOpen, onClose, title, children }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"></div>
+      <div
+        className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+        onClick={onClose}
+      ></div>
 
       <div className="fixed inset-0 overflow-y-auto pointer-events-none">
         <div className="flex min-h-full items-center justify-center p-4 pointer-events-none">
@@ -31,8 +34,6 @@ const Modal = ({ isOpen, onClose, title, children }) => {
         </div>
       </div>
 
-      {/* Click outside to close */}
-      <div className="fixed inset-0 z-40" onClick={onClose}></div>
     </div>
   );
 };
