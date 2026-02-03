@@ -7,7 +7,7 @@ export const getQuizzes = async (req, res, next) => {
   try {
     const quizzes = await Quiz.find({
       userId: req.user.id,
-      document: req.params.documentId,
+      documentId: req.params.documentId,
     })
       .populate("documentId", "title fileName")
       .sort({ createdAt: -1 });
