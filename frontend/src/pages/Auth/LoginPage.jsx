@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContent";
 import authService from "../../services/authService";
-import { BrainCircuit, Mail, Lock, ArrowRight } from "lucide-react";
+import { BrainCircuit, Mail, Lock, ArrowRight, Eye, EyeOff } from "lucide-react";
 import toast from "react-hot-toast";
 
 const LoginPage = () => {
@@ -11,6 +11,7 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -33,9 +34,9 @@ const LoginPage = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-amber-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-amber-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden rounded-3xl bg-white dark:bg-slate-900 shadow-[0_20px_60px_-15px_rgba(15,23,42,0.25)]">
-        <div className="hidden lg:flex flex-col justify-between bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-600 p-10 text-white">
+        <div className="hidden lg:flex flex-col justify-between bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-600 p-8 text-white">
           <div>
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur">
@@ -48,8 +49,8 @@ const LoginPage = () => {
                 <p className="text-xl font-semibold">AI</p>
               </div>
             </div>
-            <h2 className="mt-10 text-3xl font-semibold leading-tight">
-              Learn smarter with personalized study tools.
+            <h2 className="mt-8 text-3xl font-semibold leading-tight">
+                Learn smarter with personalized study tools.
             </h2>
             <p className="mt-4 text-white/85">
               Summaries, quizzes, and flashcards built from your documents.
@@ -58,8 +59,8 @@ const LoginPage = () => {
           <div className="text-sm text-white/80">Secure sign-in · January 31, 2026</div>
         </div>
 
-        <div className="p-8 sm:p-12">
-          <div className="mb-8">
+        <div className="p-8 sm:p-10">
+            <div className="mb-6">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 lg:hidden">
               <img src="/ai.png" alt="Learnix AI" className="h-8 w-8 rounded-lg" />
             </div>
@@ -98,14 +99,26 @@ const LoginPage = () => {
                   <Lock className="h-5 w-5" strokeWidth={2} />
                 </div>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   onFocus={() => setFocusedField("password")}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-12 py-3 text-sm text-slate-800 dark:text-slate-100 shadow-sm transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900"
+                  className="w-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-12 pr-12 py-3 text-sm text-slate-800 dark:text-slate-100 shadow-sm transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900"
                   placeholder="**********"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 dark:text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5" strokeWidth={2} />
+                  ) : (
+                    <Eye className="h-5 w-5" strokeWidth={2} />
+                  )}
+                </button>
               </div>
             </div>
             {error && (
@@ -146,8 +159,8 @@ const LoginPage = () => {
             </p>
           </div>
 
-          <p className="mt-10 text-xs text-slate-400 dark:text-slate-500">
-            By continuing, you agree to our Terms & Privacy
+          <p className="mt-8 text-xs text-slate-400 dark:text-slate-500">
+              By continuing, you agree to our Terms & Privacy
           </p>
         </div>
       </div>

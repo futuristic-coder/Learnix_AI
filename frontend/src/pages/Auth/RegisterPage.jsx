@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/authService";
-import { BrainCircuit, Mail, Lock, ArrowRight, User } from "lucide-react";
+import { BrainCircuit, Mail, Lock, ArrowRight, User, Eye, EyeOff } from "lucide-react";
 import toast from "react-hot-toast";
 
 const RegisterPage = () => {
@@ -12,6 +12,8 @@ const RegisterPage = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -108,7 +110,7 @@ const RegisterPage = () => {
             </div>
             <h1 className="mt-5 text-3xl font-semibold text-slate-900 dark:text-white">Create your account</h1>
             <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-              Get started with your AI learning assistant
+              Get started with your Learnix AI
             </p>
           </div>
 
@@ -164,15 +166,27 @@ const RegisterPage = () => {
                   <Lock className="h-5 w-5" strokeWidth={2} />
                 </div>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   onFocus={() => setFocusedField("password")}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-12 py-2.5 text-sm text-slate-800 dark:text-slate-100 shadow-sm transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900"
+                  className="w-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-12 pr-12 py-2.5 text-sm text-slate-800 dark:text-slate-100 shadow-sm transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900"
                   placeholder="Min. 6 characters"
                   required
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 dark:text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5" strokeWidth={2} />
+                  ) : (
+                    <Eye className="h-5 w-5" strokeWidth={2} />
+                  )}
+                </button>
               </div>
             </div>
 
@@ -185,15 +199,27 @@ const RegisterPage = () => {
                   <Lock className="h-5 w-5" strokeWidth={2} />
                 </div>
                 <input
-                  type="password"
+                  type={showConfirmPassword ? "text" : "password"}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   onFocus={() => setFocusedField("confirmPassword")}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-12 py-2.5 text-sm text-slate-800 dark:text-slate-100 shadow-sm transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900"
+                  className="w-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-12 pr-12 py-2.5 text-sm text-slate-800 dark:text-slate-100 shadow-sm transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900"
                   placeholder="Re-enter password"
                   required
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword((prev) => !prev)}
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 dark:text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                >
+                  {showConfirmPassword ? (
+                    <EyeOff className="h-5 w-5" strokeWidth={2} />
+                  ) : (
+                    <Eye className="h-5 w-5" strokeWidth={2} />
+                  )}
+                </button>
               </div>
             </div>
 
