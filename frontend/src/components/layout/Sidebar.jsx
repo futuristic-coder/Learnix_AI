@@ -6,13 +6,12 @@ import {
   FileText,
   User,
   LogOut,
-  BrainCircuit,
   BookOpen,
   X,
 } from "lucide-react";
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -41,15 +40,19 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
         className={`fixed top-0 left-0 h-full w-64 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-r border-slate-200 dark:border-slate-700 shadow-xl transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 transition-transform duration-300 ease-in-out z-50`}
       >
         <div className="flex flex-col h-full">
-          {/* Logo */}
-          <div className="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-700">
+          {/* Profile */}
+          <div className="flex items-center justify-between p-5 border-b border-slate-200 dark:border-slate-700">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl overflow-hidden shadow-lg shadow-indigo-600/30">
-                <img src="/ai.png" alt="Learnix AI" className="h-full w-full object-cover" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-600 text-white shadow-md shadow-indigo-600/30">
+                <User size={20} strokeWidth={2} />
               </div>
               <div>
-                <p className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">Learnix</p>
-                <h1 className="text-sm font-semibold text-slate-800 dark:text-slate-100">AI</h1>
+                <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">
+                  {user?.username || "User"}
+                </p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  {user?.email || "user@example.com"}
+                </p>
               </div>
             </div>
             <button
