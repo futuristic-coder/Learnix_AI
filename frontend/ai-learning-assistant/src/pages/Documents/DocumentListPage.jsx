@@ -106,8 +106,8 @@ const DocumentListPage = () => {
     if (documents.length === 0) {
       return (
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-10 text-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 mx-auto mb-5">
-            <FileText className="h-8 w-8 text-blue-600" strokeWidth={2} />
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 mx-auto mb-5">
+            <FileText className="h-8 w-8 text-indigo-600" strokeWidth={2} />
           </div>
           <h3 className="text-xl font-semibold text-slate-800">No documents yet</h3>
           <p className="mt-2 text-sm text-slate-500">
@@ -150,8 +150,8 @@ const DocumentListPage = () => {
             </Button>
           )}
         </div>
-      {renderContent()}
       </div>
+      {renderContent()}
       {isUploadModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
           <div className="w-full max-w-xl bg-white rounded-2xl shadow-xl border border-slate-200 p-6 relative">
@@ -173,14 +173,14 @@ const DocumentListPage = () => {
                   value={uploadTitle}
                   onChange={(e) => setUploadTitle(e.target.value)}
                   required
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-100"
                   placeholder="e.g. Biology Chapter 1"
                 />
               </div>
 
               <div className="space-y-2">
                 <label className="text-sm font-medium text-slate-700">PDF files</label>
-                <div className="relative border-2 border-dashed border-slate-200 rounded-2xl p-6 text-center hover:border-blue-400 transition">
+                <div className="relative border-2 border-dashed border-slate-200 rounded-2xl p-6 text-center hover:border-indigo-400 transition">
                   <input
                     id="file-upload"
                     type="file"
@@ -189,15 +189,15 @@ const DocumentListPage = () => {
                     className="absolute inset-0 opacity-0 cursor-pointer"
                   />
                   <div className="flex flex-col items-center gap-2">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50">
-                      <Upload className="h-5 w-5 text-blue-600" strokeWidth={2} />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50">
+                      <Upload className="h-5 w-5 text-indigo-600" strokeWidth={2} />
                     </div>
                     <p>
                       {uploadFile ? (
                         <span>{uploadFile.name}</span>
                       ) : (
                         <>
-                          <span className="text-sm font-medium text-blue-600">Click to upload</span>{" "}
+                          <span className="text-sm font-medium text-indigo-600">Click to upload</span>{" "}
                           or drag and drop
                         </>
                       )}
@@ -254,7 +254,7 @@ const DocumentListPage = () => {
                 type="button"
                 onClick={handleConfirmDelete}
                 disabled={deleting}
-                className="bg-red-600 hover:bg-red-700 focus:ring-red-200"
+                variant="danger"
               >
                 {deleting ? "Deleting..." : "Delete"}
               </Button>

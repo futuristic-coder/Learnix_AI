@@ -50,9 +50,9 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 flex items-center justify-center px-4 py-6">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-amber-50 flex items-center justify-center px-4 py-6">
       <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_-15px_rgba(15,23,42,0.25)]">
-        <div className="hidden lg:flex flex-col justify-between bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 p-8 text-white">
+        <div className="hidden lg:flex flex-col justify-between bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-600 p-8 text-white">
           <div>
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur">
@@ -103,7 +103,7 @@ const RegisterPage = () => {
 
         <div className="p-6 sm:p-8">
           <div className="mb-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 lg:hidden">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 lg:hidden">
               <BrainCircuit strokeWidth={2} />
             </div>
             <h1 className="mt-5 text-3xl font-semibold text-slate-900">Create your account</h1>
@@ -117,7 +117,7 @@ const RegisterPage = () => {
               <label className="text-sm font-medium text-slate-700">Username</label>
               <div className="relative">
                 <div
-                  className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${focusedField === "username" ? "text-emerald-600" : "text-slate-400"}`}
+                  className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${focusedField === "username" ? "text-indigo-600" : "text-slate-400"}`}
                 >
                   <User className="h-5 w-5" strokeWidth={2} />
                 </div>
@@ -127,7 +127,7 @@ const RegisterPage = () => {
                   onChange={(e) => setUsername(e.target.value)}
                   onFocus={() => setFocusedField("username")}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-12 py-2.5 text-sm text-slate-800 shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-100"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-12 py-2.5 text-sm text-slate-800 shadow-sm transition focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-100"
                   placeholder="johndoe"
                   required
                 />
@@ -138,7 +138,7 @@ const RegisterPage = () => {
               <label className="text-sm font-medium text-slate-700">Email</label>
               <div className="relative">
                 <div
-                  className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${focusedField === "email" ? "text-emerald-600" : "text-slate-400"}`}
+                  className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${focusedField === "email" ? "text-indigo-600" : "text-slate-400"}`}
                 >
                   <Mail className="h-5 w-5" strokeWidth={2} />
                 </div>
@@ -148,7 +148,7 @@ const RegisterPage = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   onFocus={() => setFocusedField("email")}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-12 py-2.5 text-sm text-slate-800 shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-100"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-12 py-2.5 text-sm text-slate-800 shadow-sm transition focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-100"
                   placeholder="you@example.com"
                   required
                 />
@@ -159,7 +159,7 @@ const RegisterPage = () => {
               <label className="text-sm font-medium text-slate-700">Password</label>
               <div className="relative">
                 <div
-                  className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${focusedField === "password" ? "text-emerald-600" : "text-slate-400"}`}
+                  className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${focusedField === "password" ? "text-indigo-600" : "text-slate-400"}`}
                 >
                   <Lock className="h-5 w-5" strokeWidth={2} />
                 </div>
@@ -169,7 +169,7 @@ const RegisterPage = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   onFocus={() => setFocusedField("password")}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-12 py-2.5 text-sm text-slate-800 shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-100"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-12 py-2.5 text-sm text-slate-800 shadow-sm transition focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-100"
                   placeholder="Min. 6 characters"
                   required
                 />
@@ -180,7 +180,7 @@ const RegisterPage = () => {
               <label className="text-sm font-medium text-slate-700">Confirm Password</label>
               <div className="relative">
                 <div
-                  className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${focusedField === "confirmPassword" ? "text-emerald-600" : "text-slate-400"}`}
+                  className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${focusedField === "confirmPassword" ? "text-indigo-600" : "text-slate-400"}`}
                 >
                   <Lock className="h-5 w-5" strokeWidth={2} />
                 </div>
@@ -190,7 +190,7 @@ const RegisterPage = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   onFocus={() => setFocusedField("confirmPassword")}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-12 py-2.5 text-sm text-slate-800 shadow-sm transition focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-100"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-12 py-2.5 text-sm text-slate-800 shadow-sm transition focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-100"
                   placeholder="Re-enter password"
                   required
                 />
@@ -206,7 +206,7 @@ const RegisterPage = () => {
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-emerald-600/30 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-600/40 disabled:cursor-not-allowed disabled:opacity-70"
+              className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-600/30 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-600/40 disabled:cursor-not-allowed disabled:opacity-70"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 {loading ? (
@@ -229,7 +229,7 @@ const RegisterPage = () => {
               Already have an account?{" "}
               <Link
                 to="/login"
-                className="font-semibold text-emerald-600 transition hover:text-emerald-700"
+                className="font-semibold text-indigo-600 transition hover:text-indigo-700"
               >
                 Sign In
               </Link>

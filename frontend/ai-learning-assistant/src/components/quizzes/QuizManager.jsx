@@ -105,12 +105,12 @@ const QuizManager = ({ documentId }) => {
   };
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-6 bg-transparent">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Quiz Library</h2>
-            <p className="text-gray-600">Test your knowledge with AI-generated quizzes</p>
+            <h2 className="text-3xl font-bold text-slate-900 mb-2">Quiz Library</h2>
+            <p className="text-slate-600">Test your knowledge with AI-generated quizzes</p>
           </div>
           <Button onClick={() => setIsGenerateModalOpen(true)}>
             <Plus className="w-5 h-5 mr-2" />
@@ -127,7 +127,7 @@ const QuizManager = ({ documentId }) => {
       >
         <form onSubmit={handleGenerateQuiz} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-slate-700 mb-2">
               Number of Questions
             </label>
             <input
@@ -138,11 +138,11 @@ const QuizManager = ({ documentId }) => {
               }
               min="1"
               max="20"
-              className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
               placeholder="Enter number of questions"
               required
             />
-            <p className="mt-2 text-sm text-gray-500">Choose between 1 and 20 questions</p>
+            <p className="mt-2 text-sm text-slate-500">Choose between 1 and 20 questions</p>
           </div>
           <div className="flex gap-3 pt-4">
             <Button
@@ -167,9 +167,9 @@ const QuizManager = ({ documentId }) => {
         title="Confirm Delete"
       >
         <div className="space-y-6">
-          <p className="text-gray-600">
+          <p className="text-slate-600">
             Are you sure you want to delete{" "}
-            <span className="font-semibold text-gray-900">
+            <span className="font-semibold text-slate-900">
               {selectedQuiz?.title || "this quiz"}
             </span>
             ? This action cannot be undone.
@@ -184,7 +184,7 @@ const QuizManager = ({ documentId }) => {
             >
               Cancel
             </Button>
-            <Button onClick={handleConfirmDelete} disabled={deleting} className="flex-1 bg-red-600 hover:bg-red-700">
+            <Button onClick={handleConfirmDelete} disabled={deleting} className="flex-1" variant="danger">
               {deleting ? "Deleting..." : "Delete Quiz"}
             </Button>
           </div>

@@ -40,14 +40,14 @@ const QuizResultPage = () => {
   }
 
   if (!results || !results.data) {
-  return (
-    <div className="">
-      <div className="">
-        <p className="">Quiz results not found.</p>
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 p-6">
+        <div className="bg-white rounded-2xl shadow-lg p-8 text-center max-w-md">
+          <p className="text-slate-700 text-lg">Quiz results not found.</p>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
 const { data: { quiz, results: detailedResults } } = results;
 const score = quiz.score;
@@ -70,11 +70,11 @@ const getScoreMessage = (score) => {
 };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50 p-6">
       <div className="max-w-5xl mx-auto">
         <Link 
           to={`/documents/${quiz.documentId?._id || quiz.documentId}`} 
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-indigo-600 mb-6 transition-colors font-medium"
+          className="inline-flex items-center gap-2 text-slate-600 hover:text-indigo-600 mb-6 transition-colors font-medium"
         >
           <ArrowLeft className="w-5 h-5" />
           Back to Document
@@ -82,47 +82,47 @@ const getScoreMessage = (score) => {
 
         <PageHeader
           title={`${quiz.title || 'Quiz'} Results`}
-          description={`Review your performance on ${totalQuestions} questions`}
+          subtitle={`Review your performance on ${totalQuestions} questions`}
         />
 
         {/* Score Summary Card */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-gray-200">
+        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-slate-200">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-6">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center shadow-lg">
                 <Trophy className="w-10 h-10 text-white" />
               </div>
               <div>
-                <p className="text-gray-600 text-sm font-medium uppercase tracking-wide mb-2">Your Score</p>
+                <p className="text-slate-600 text-sm font-medium uppercase tracking-wide mb-2">Your Score</p>
                 <div className={`inline-block bg-gradient-to-r ${getScoreColor(score)} text-white font-bold text-4xl py-3 px-6 rounded-xl shadow-lg`}>
                   {score}%
                 </div>
-                <p className="text-lg font-semibold text-gray-700 mt-3">{getScoreMessage(score)}</p>
+                <p className="text-lg font-semibold text-slate-700 mt-3">{getScoreMessage(score)}</p>
               </div>
             </div>
 
             {/* Stats Grid */}
             <div className="grid grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 mx-auto mb-2">
-                  <Target className="w-6 h-6 text-purple-600" />
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-100 mx-auto mb-2">
+                  <Target className="w-6 h-6 text-indigo-600" />
                 </div>
-                <p className="text-2xl font-bold text-gray-900">{totalQuestions}</p>
-                <p className="text-sm text-gray-600">Total</p>
+                <p className="text-2xl font-bold text-slate-900">{totalQuestions}</p>
+                <p className="text-sm text-slate-600">Total</p>
               </div>
               <div className="text-center">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-green-100 mx-auto mb-2">
-                  <CheckCircle2 className="w-6 h-6 text-green-600" />
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 mx-auto mb-2">
+                  <CheckCircle2 className="w-6 h-6 text-emerald-600" />
                 </div>
-                <p className="text-2xl font-bold text-green-600">{correctAnswers}</p>
-                <p className="text-sm text-gray-600">Correct</p>
+                <p className="text-2xl font-bold text-emerald-600">{correctAnswers}</p>
+                <p className="text-sm text-slate-600">Correct</p>
               </div>
               <div className="text-center">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-red-100 mx-auto mb-2">
-                  <XCircle className="w-6 h-6 text-red-600" />
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-rose-100 mx-auto mb-2">
+                  <XCircle className="w-6 h-6 text-rose-600" />
                 </div>
-                <p className="text-2xl font-bold text-red-600">{incorrectAnswers}</p>
-                <p className="text-sm text-gray-600">Incorrect</p>
+                <p className="text-2xl font-bold text-rose-600">{incorrectAnswers}</p>
+                <p className="text-sm text-slate-600">Incorrect</p>
               </div>
             </div>
           </div>
@@ -130,7 +130,7 @@ const getScoreMessage = (score) => {
 
         {/* Detailed Results */}
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
             <BookOpen className="w-7 h-7 text-indigo-600" />
             Detailed Results
           </h2>
@@ -141,7 +141,7 @@ const getScoreMessage = (score) => {
                 result.isCorrect ? 'border-green-500' : 'border-red-500'
               }`}
             >
-              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-4">
                 <div className="flex items-start gap-3 flex-1">
                   <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
                     result.isCorrect ? 'bg-green-100' : 'bg-red-100'
@@ -167,7 +167,7 @@ const getScoreMessage = (score) => {
                         </span>
                       )}
                     </div>
-                    <p className="text-gray-700 text-base leading-relaxed">
+                    <p className="text-slate-700 text-base leading-relaxed">
                       {result.question}
                     </p>
                   </div>
@@ -181,14 +181,14 @@ const getScoreMessage = (score) => {
                     <div className="flex items-start gap-2">
                       <XCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="text-sm font-semibold text-gray-700">Your Answer:</p>
+                        <p className="text-sm font-semibold text-slate-700">Your Answer:</p>
                         <p className="text-base text-red-700 font-medium">{result.selectedAnswer}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="text-sm font-semibold text-gray-700">Correct Answer:</p>
+                        <p className="text-sm font-semibold text-slate-700">Correct Answer:</p>
                         <p className="text-base text-green-700 font-medium">{result.correctAnswer}</p>
                       </div>
                     </div>
@@ -209,7 +209,7 @@ const getScoreMessage = (score) => {
                           ? 'bg-green-50 border-green-500 shadow-sm'
                           : isSelectedAnswer
                           ? 'bg-red-50 border-red-500'
-                          : 'bg-gray-50 border-gray-200'
+                          : 'bg-slate-50 border-slate-200'
                       }`}
                     >
                       <div className="flex items-center gap-3">
@@ -218,7 +218,7 @@ const getScoreMessage = (score) => {
                             ? 'bg-green-600 text-white shadow-md'
                             : isSelectedAnswer
                             ? 'bg-red-600 text-white'
-                            : 'bg-gray-300 text-gray-700'
+                            : 'bg-slate-300 text-slate-700'
                         }`}>
                           {String.fromCharCode(65 + optIndex)}
                         </div>
@@ -227,7 +227,7 @@ const getScoreMessage = (score) => {
                             ? 'font-semibold text-green-900' 
                             : isSelectedAnswer 
                             ? 'font-medium text-red-900' 
-                            : 'text-gray-700'
+                            : 'text-slate-700'
                         }`}>
                           {option}
                         </span>
@@ -250,9 +250,9 @@ const getScoreMessage = (score) => {
               </div>
 
               {result.explanation && (
-                <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <p className="text-sm font-semibold text-blue-900 mb-1">Explanation:</p>
-                  <p className="text-sm text-blue-800 leading-relaxed">{result.explanation}</p>
+                <div className="mt-4 p-4 bg-indigo-50 border border-indigo-200 rounded-lg">
+                  <p className="text-sm font-semibold text-indigo-900 mb-1">Explanation:</p>
+                  <p className="text-sm text-indigo-800 leading-relaxed">{result.explanation}</p>
                 </div>
               )}
             </div>
@@ -262,7 +262,7 @@ const getScoreMessage = (score) => {
         {/* Action Button */}
         <div className="mt-8 flex justify-center">
           <Link to={`/documents/${quiz.document._id}`}>
-            <button className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl">
+            <button className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-violet-700 transition-all duration-200 shadow-lg hover:shadow-xl">
               <BookOpen className="w-5 h-5" />
               Back to Document
             </button>

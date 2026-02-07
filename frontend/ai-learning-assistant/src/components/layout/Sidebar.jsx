@@ -38,13 +38,13 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
       
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-white border-r border-slate-200 shadow-xl transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 transition-transform duration-300 ease-in-out z-50`}
+        className={`fixed top-0 left-0 h-full w-64 bg-white/90 backdrop-blur border-r border-slate-200 shadow-xl transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 transition-transform duration-300 ease-in-out z-50`}
       >
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="flex items-center justify-between p-6 border-b border-slate-200">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 shadow-lg shadow-blue-600/30">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-violet-600 shadow-lg shadow-indigo-600/30">
                 <BrainCircuit className="text-white h-5 w-5" strokeWidth={2} />
               </div>
               <div>
@@ -68,7 +68,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 to={link.to}
                 onClick={toggleSidebar}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${isActive ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-600/30" : "text-slate-700 hover:bg-slate-100"}`
+                  `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${isActive ? "bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-600/30" : "text-slate-700 hover:bg-slate-100"}`
                 }
               >
                 {({ isActive }) => (

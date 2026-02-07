@@ -18,18 +18,18 @@ const Modal = ({ isOpen, onClose, title, children }) => {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-10">
-              <h3 className="text-xl font-bold text-gray-900">{title}</h3>
+            <div className="sticky top-0 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between z-10">
+              <h3 className="text-xl font-bold text-slate-900">{title}</h3>
               <button
                 onClick={onClose}
-                className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+                className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 <X className="w-5 h-5" strokeWidth={2.5} />
               </button>
             </div>
 
             {/* Content */}
-            <div className="px-6 py-4 text-gray-700">{children}</div>
+            <div className="px-6 py-4 text-slate-700">{children}</div>
           </div>
         </div>
       </div>

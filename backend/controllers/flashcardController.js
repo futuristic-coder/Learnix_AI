@@ -1,4 +1,5 @@
 import Flashcard from "../models/Flashcard.js";
+import Document from "../models/Document.js";
 
 
 // @desc    Get all flashcards for a document
@@ -29,7 +30,7 @@ export const getFlashcards = async (req, res, next) => {
 export const getAllFlashcardSets = async (req, res, next) => {
     try{
         const flashcardSets= await Flashcard.find({userId: req.user._id})
-        .populate('documentId','title')
+        .populate('documentId','title _id')
         .sort({createdAt:-1});
 
         res.status(200).json({
@@ -73,6 +74,11 @@ export const reviewFlashcard = async (req, res, next) => {
         flashcardSet.cards[cardIndex].reviewCount +=1;
 
         await flashcardSet.save();
+
+        await Document.updateOne(
+            { _id: flashcardSet.documentId, userId: req.user._id },
+            { $set: { lastAccessed: new Date() } },
+        );
         
         res.status(200).json({
             success:true,
@@ -114,6 +120,11 @@ export const toggleStarFlashcard = async (req, res, next) => {
         flashcardSet.cards[cardIndex].isStarred= !flashcardSet.cards[cardIndex].isStarred;
 
         await flashcardSet.save();
+
+        await Document.updateOne(
+            { _id: flashcardSet.documentId, userId: req.user._id },
+            { $set: { lastAccessed: new Date() } },
+        );
 
         res.status(200).json({
             success:true,

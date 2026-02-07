@@ -74,7 +74,7 @@ const DocumentDetailPage = () => {
             href={pdfUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-700"
           >
             <ExternalLink size={16} />
             Open PDF in new tab
@@ -128,7 +128,7 @@ const DocumentDetailPage = () => {
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       <div>
-        <Link to="/documents" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-slate-900">
+        <Link to="/documents" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-indigo-700">
           <ArrowLeft size={16} />
           Back to Documents
         </Link>

@@ -3,12 +3,13 @@ import React from 'react'
 const Button = ({
     children, onClick, className, type = "button", disabled = false, variant="primary", size="md"
 }) => {
-    const baseStyles = "inline-flex items-center justify-center gap-2 rounded-2xl font-semibold focus:outline-none focus:ring-4 focus:ring-offset-2 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed";
+    const baseStyles = "inline-flex items-center justify-center gap-2 rounded-xl font-semibold focus:outline-none focus:ring-4 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md disabled:shadow-none disabled:opacity-60 disabled:cursor-not-allowed";
 
     const variantStyles = {
-        primary: "bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:shadow-lg hover:shadow-blue-600/30 focus:ring-blue-200",
-        secondary: "bg-slate-100 text-slate-800 hover:bg-slate-200 focus:ring-slate-200",
-        outline: "bg-transparent border border-slate-300 text-slate-800 hover:bg-slate-50 focus:ring-slate-200",
+        primary: "bg-gradient-to-r from-indigo-600 to-violet-600 text-white hover:shadow-indigo-600/30 focus:ring-indigo-200",
+        secondary: "bg-slate-100 text-slate-900 hover:bg-slate-200 focus:ring-slate-200",
+        outline: "bg-white border border-slate-300 text-slate-900 hover:bg-slate-50 focus:ring-slate-200",
+        danger: "bg-gradient-to-r from-rose-600 to-red-600 text-white hover:shadow-rose-600/30 focus:ring-rose-200",
     };
 
     const sizeStyles = {

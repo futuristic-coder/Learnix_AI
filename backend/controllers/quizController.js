@@ -1,4 +1,5 @@
 import Quiz from "../models/Quiz.js";
+import Document from "../models/Document.js";
 
 // @desc    Get all quizzes for a document
 // @route   GET /api/quizzes/:documentId
@@ -35,6 +36,11 @@ export const getQuizById = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: "Quiz not found", statuscode: 404 });
     }
+
+    await Document.updateOne(
+      { _id: quiz.documentId, userId: req.user.id },
+      { $set: { lastAccessed: new Date() } },
+    );
     res.status(200).json({ success: true, data: quiz });
   } catch (error) {
     next(error);
@@ -96,6 +102,11 @@ export const submitQuiz = async (req, res, next) => {
     quiz.score = score;
     quiz.completedAt = new Date();
     await quiz.save();
+
+    await Document.updateOne(
+      { _id: quiz.documentId, userId: req.user.id },
+      { $set: { lastAccessed: new Date() } },
+    );
     res
       .status(200)
       .json({

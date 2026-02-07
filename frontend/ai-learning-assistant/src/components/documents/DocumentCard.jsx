@@ -37,8 +37,8 @@ const DocumentCard = ({ document, onDelete }) => {
     >
       <div className="flex items-start justify-between gap-4 mb-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 group-hover:bg-blue-100 transition">
-            <FileText className="h-6 w-6 text-blue-600" strokeWidth={2} />
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 group-hover:bg-indigo-100 transition">
+            <FileText className="h-6 w-6 text-indigo-600" strokeWidth={2} />
           </div>
           <div>
             <h3 className="text-lg font-semibold text-slate-900 line-clamp-1">

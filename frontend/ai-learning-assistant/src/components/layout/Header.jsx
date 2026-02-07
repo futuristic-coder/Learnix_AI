@@ -6,7 +6,7 @@ const Header = ({toggleSidebar}) => {
     const {user} = useAuth();
 
   return (
-    <header className="w-full bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between shadow-sm">
+    <header className="w-full bg-white/80 backdrop-blur border-b border-slate-200 px-6 py-4 flex items-center justify-between shadow-sm">
       <div className='flex items-center gap-4'>
         <button 
           onClick={toggleSidebar} 
@@ -20,11 +20,11 @@ const Header = ({toggleSidebar}) => {
       <div className='flex items-center gap-4'>
         <button className="relative p-2 rounded-xl hover:bg-slate-100 transition">
           <Bell className="h-6 w-6 text-slate-600" />
-          <span className="absolute top-1 right-1 h-2 w-2 bg-blue-600 rounded-full"></span>
+          <span className="absolute top-1 right-1 h-2 w-2 bg-amber-500 rounded-full"></span>
         </button>
         
         <div className='flex items-center gap-3 pl-4 border-l border-slate-200'>
-          <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-600/30'>
+          <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-600/30'>
             <User className="h-5 w-5" strokeWidth={2} />          
           </div>
           <div className='hidden sm:block'>

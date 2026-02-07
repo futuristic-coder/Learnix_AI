@@ -76,16 +76,16 @@ navigate(`/quizzes/${quizId}/results`);
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <Spinner />
       </div>
     );
   }
   if (!quiz || quiz.questions.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 p-6">
         <div className="bg-white rounded-2xl shadow-lg p-8 text-center max-w-md">
-          <p className="text-gray-700 text-lg">Quiz not found or has no questions.</p>
+          <p className="text-slate-700 text-lg">Quiz not found or has no questions.</p>
         </div>
       </div>
     );
@@ -96,14 +96,14 @@ navigate(`/quizzes/${quizId}/results`);
   const answeredCount = Object.keys(selectedAnswers).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50 p-6">
       <div className="max-w-4xl mx-auto">
-        <PageHeader title={quiz.title || "Take Quiz"} description="Answer all questions to complete the quiz" />
+        <PageHeader title={quiz.title || "Take Quiz"} subtitle="Answer all questions to complete the quiz" />
 
         {/* Progress Bar */}
         <div className="bg-white rounded-2xl shadow-md p-6 mb-6">
           <div className="flex justify-between items-center mb-4">
-            <span className="text-sm font-semibold text-gray-700">
+            <span className="text-sm font-semibold text-slate-700">
               Question {currentQuestionIndex + 1} of {quiz.questions.length}
             </span>
             <span className="text-sm font-medium text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
@@ -111,9 +111,9 @@ navigate(`/quizzes/${quizId}/results`);
             </span>
           </div>
 
-          <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+          <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
             <div
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 h-3 rounded-full transition-all duration-500 ease-out"
+              className="bg-gradient-to-r from-indigo-600 to-violet-600 h-3 rounded-full transition-all duration-500 ease-out"
               style={{
                 width: `${
                   ((currentQuestionIndex + 1) / quiz.questions.length) * 100
@@ -126,10 +126,10 @@ navigate(`/quizzes/${quizId}/results`);
         {/* Question Card */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center text-white font-bold shadow-lg" />
-            <span className="text-lg font-semibold text-gray-900">Question {currentQuestionIndex + 1}</span>
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-600 to-violet-600 flex items-center justify-center text-white font-bold shadow-lg" />
+            <span className="text-lg font-semibold text-slate-900">Question {currentQuestionIndex + 1}</span>
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 leading-relaxed">{currentQuestion.question}</h3>
+          <h3 className="text-2xl font-bold text-slate-900 mb-6 leading-relaxed">{currentQuestion.question}</h3>
           <div className="space-y-4">
           {currentQuestion.options.map((option, index) => {
             const isSelected = selectedAnswers[currentQuestion._id] === index;
@@ -139,7 +139,7 @@ navigate(`/quizzes/${quizId}/results`);
                 className={`flex items-center gap-4 p-5 border-2 rounded-xl cursor-pointer transition-all duration-200 hover:shadow-md ${
                   isSelected 
                     ? "bg-indigo-50 border-indigo-500 shadow-md" 
-                    : "bg-white border-gray-300 hover:border-indigo-300"
+                    : "bg-white border-slate-300 hover:border-indigo-300"
                 }`}
               >
                 <input
@@ -156,7 +156,7 @@ navigate(`/quizzes/${quizId}/results`);
                   className={`shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
                     isSelected 
                       ? "border-indigo-500 bg-indigo-500" 
-                      : "border-gray-400"
+                      : "border-slate-400"
                   }`}
                 >
                   {isSelected && (
@@ -167,7 +167,7 @@ navigate(`/quizzes/${quizId}/results`);
                   className={`flex-1 text-base ${
                     isSelected 
                       ? "text-indigo-900 font-semibold" 
-                      : "text-gray-700"
+                      : "text-slate-700"
                   }`}
                 >
                   {option}
@@ -197,7 +197,7 @@ navigate(`/quizzes/${quizId}/results`);
           <button
             onClick={handleSubmitQuiz}
             disabled={answeredCount !== quiz.questions.length || submitting}
-            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-emerald-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl"
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-violet-700 disabled:from-slate-400 disabled:to-slate-500 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl"
           >
             {submitting ? (
               <>
@@ -224,7 +224,7 @@ navigate(`/quizzes/${quizId}/results`);
       </div>
       {/* Question Navigation */}
       <div className="bg-white rounded-2xl shadow-md p-6">
-        <h4 className="text-lg font-semibold text-gray-900 mb-4">Question Navigation</h4>
+        <h4 className="text-lg font-semibold text-slate-900 mb-4">Question Navigation</h4>
         <div className="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-3">
           {quiz.questions.map((_, index) => {
             const isAnsweredQuestion = selectedAnswers.hasOwnProperty(quiz.questions[index]._id);
@@ -236,10 +236,10 @@ navigate(`/quizzes/${quizId}/results`);
                 disabled={submitting}
                 className={`w-12 h-12 rounded-lg font-semibold transition-all duration-200 ${
                   isCurrent 
-                    ? "bg-gradient-to-br from-purple-600 to-indigo-600 text-white shadow-lg scale-110" 
+                    ? "bg-gradient-to-br from-indigo-600 to-violet-600 text-white shadow-lg scale-110" 
                     : isAnsweredQuestion 
                     ? "bg-indigo-100 text-indigo-700 hover:bg-indigo-200" 
-                    : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                    : "bg-slate-200 text-slate-600 hover:bg-slate-300"
                 } disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 {index + 1}
@@ -249,16 +249,16 @@ navigate(`/quizzes/${quizId}/results`);
         </div>
         <div className="flex gap-6 mt-6 text-sm">
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-gradient-to-br from-purple-600 to-indigo-600" />
-            <span className="text-gray-600">Current</span>
+            <div className="w-4 h-4 rounded bg-gradient-to-br from-indigo-600 to-violet-600" />
+            <span className="text-slate-600">Current</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded bg-indigo-100" />
-            <span className="text-gray-600">Answered</span>
+            <span className="text-slate-600">Answered</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-gray-200" />
-            <span className="text-gray-600">Not Answered</span>
+            <div className="w-4 h-4 rounded bg-slate-200" />
+            <span className="text-slate-600">Not Answered</span>
           </div>
         </div>
       </div>

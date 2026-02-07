@@ -33,9 +33,9 @@ const LoginPage = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-amber-50 flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_-15px_rgba(15,23,42,0.25)]">
-        <div className="hidden lg:flex flex-col justify-between bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-600 p-10 text-white">
+        <div className="hidden lg:flex flex-col justify-between bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-600 p-10 text-white">
           <div>
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur">
@@ -60,7 +60,7 @@ const LoginPage = () => {
 
         <div className="p-8 sm:p-12">
           <div className="mb-8">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 lg:hidden">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 lg:hidden">
               <BrainCircuit strokeWidth={2} />
             </div>
             <h1 className="mt-5 text-3xl font-semibold text-slate-900">Welcome back</h1>
@@ -74,7 +74,7 @@ const LoginPage = () => {
               <label className="text-sm font-medium text-slate-700">Email</label>
               <div className="relative">
                   <div
-                  className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${focusedField === "email" ? "text-blue-600" : "text-slate-400"}`}
+                  className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${focusedField === "email" ? "text-indigo-600" : "text-slate-400"}`}
                   >
                   <Mail className="h-5 w-5" strokeWidth={2} />
                 </div>
@@ -84,7 +84,7 @@ const LoginPage = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   onFocus={() => setFocusedField("email")}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-12 py-3 text-sm text-slate-800 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-12 py-3 text-sm text-slate-800 shadow-sm transition focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-100"
                   placeholder="test@gmail.com"
                 />
               </div>
@@ -93,7 +93,7 @@ const LoginPage = () => {
               <label className="text-sm font-medium text-slate-700">Password</label>
               <div className="relative">
                   <div
-                  className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${focusedField === "password" ? "text-blue-600" : "text-slate-400"}`}
+                  className={`absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors duration-300 ${focusedField === "password" ? "text-indigo-600" : "text-slate-400"}`}
                   >
                   <Lock className="h-5 w-5" strokeWidth={2} />
                 </div>
@@ -103,7 +103,7 @@ const LoginPage = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   onFocus={() => setFocusedField("password")}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-12 py-3 text-sm text-slate-800 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-12 py-3 text-sm text-slate-800 shadow-sm transition focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-100"
                   placeholder="**********"
                 />
               </div>
@@ -116,7 +116,7 @@ const LoginPage = () => {
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/30 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/40 disabled:cursor-not-allowed disabled:opacity-70"
+              className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-600/30 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-600/40 disabled:cursor-not-allowed disabled:opacity-70"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 {loading ? (
@@ -139,7 +139,7 @@ const LoginPage = () => {
                 Don't have an account?{" "}
               <Link
                 to="/register"
-                className="font-semibold text-blue-600 transition hover:text-blue-700"
+                className="font-semibold text-indigo-600 transition hover:text-indigo-700"
               >
                   Sign Up
               </Link>

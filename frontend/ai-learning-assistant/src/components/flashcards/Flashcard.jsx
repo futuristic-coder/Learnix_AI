@@ -20,14 +20,14 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
       >
         {/* Front of card */}
         <div
-          className="absolute inset-0 w-full h-full bg-gradient-to-br from-purple-50 via-white to-indigo-50 rounded-2xl shadow-xl border-2 border-purple-200 p-8 flex flex-col"
+          className="absolute inset-0 w-full h-full bg-gradient-to-br from-indigo-50 via-white to-violet-50 rounded-2xl shadow-xl border-2 border-indigo-200 p-8 flex flex-col"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
           }}
         >
           <div className="flex items-center justify-between mb-6">
-            <div className="inline-flex items-center px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold capitalize">
+            <div className="inline-flex items-center px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-sm font-semibold capitalize">
               {flashcard?.difficulty || 'Medium'}
             </div>
             <button
@@ -37,8 +37,8 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
               }}
               className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
                 flashcard.isStarred
-                  ? "bg-yellow-100 text-yellow-500 hover:bg-yellow-200"
-                  : "bg-gray-100 text-gray-400 hover:bg-gray-200"
+                  ? "bg-amber-100 text-amber-600 hover:bg-amber-200"
+                  : "bg-slate-100 text-slate-400 hover:bg-slate-200"
               }`}
             >
               <Star
@@ -50,10 +50,10 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
           </div>
 
           <div className="flex-1 flex items-center justify-center">
-            <p className="text-xl font-semibold text-gray-800 text-center leading-relaxed">{flashcard.question}</p>
+            <p className="text-xl font-semibold text-slate-800 text-center leading-relaxed">{flashcard.question}</p>
           </div>
 
-          <div className="flex items-center justify-center gap-2 text-purple-600 mt-4">
+          <div className="flex items-center justify-center gap-2 text-indigo-600 mt-4">
             <RotateCcw className="w-5 h-5" strokeWidth={2.5} />
             <span className="text-sm font-medium">Click to reveal answer</span>
           </div>
@@ -61,7 +61,7 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
 
         {/* Back of card */}
         <div
-          className="absolute inset-0 w-full h-full bg-gradient-to-br from-indigo-50 via-white to-purple-50 rounded-2xl shadow-xl border-2 border-indigo-200 p-8 flex flex-col"
+          className="absolute inset-0 w-full h-full bg-gradient-to-br from-indigo-50 via-white to-violet-50 rounded-2xl shadow-xl border-2 border-indigo-200 p-8 flex flex-col"
           style={{
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -79,8 +79,8 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
               }}
               className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
                 flashcard.isStarred
-                  ? "bg-yellow-100 text-yellow-500 hover:bg-yellow-200"
-                  : "bg-gray-100 text-gray-400 hover:bg-gray-200"
+                  ? "bg-amber-100 text-amber-600 hover:bg-amber-200"
+                  : "bg-slate-100 text-slate-400 hover:bg-slate-200"
               }`}
             >
               <Star
@@ -91,7 +91,7 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
             </button>
           </div>
           <div className="flex-1 flex items-center justify-center">
-            <p className="text-lg text-gray-700 text-center leading-relaxed">{flashcard.answer}</p>
+            <p className="text-lg text-slate-700 text-center leading-relaxed">{flashcard.answer}</p>
           </div>
           <div className="flex items-center justify-center gap-2 text-indigo-600 mt-4">
             <RotateCcw className="w-5 h-5" strokeWidth={2.5} />

@@ -39,8 +39,8 @@ const DashboardPage = () => {
     return (
       <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-12 text-center">
-          <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-blue-50 mx-auto mb-6">
-            <TrendingUp className="h-10 w-10 text-blue-600" strokeWidth={2} />
+          <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-indigo-50 mx-auto mb-6">
+            <TrendingUp className="h-10 w-10 text-indigo-600" strokeWidth={2} />
           </div>
           <p className="text-xl font-semibold text-slate-800">
             No progress data available yet
@@ -58,25 +58,25 @@ const DashboardPage = () => {
       label: "Total Documents",
       value: dashboardData.overview.totalDocuments,
       icon: FileText,
-      gradient: "from-blue-600 to-indigo-600",
-      bgColor: "bg-blue-50",
-      textColor: "text-blue-700",
-    },
-    {
-      label: "Total Flashcards",
-      value: dashboardData.overview.totalFlashcards,
-      icon: BookOpen,
       gradient: "from-indigo-600 to-violet-600",
       bgColor: "bg-indigo-50",
       textColor: "text-indigo-700",
     },
     {
-      label: "Total Quizzes",
-      value: dashboardData.overview.totalQuizzes,
-      icon: BrainCircuit,
+      label: "Total Flashcards",
+      value: dashboardData.overview.totalFlashcards,
+      icon: BookOpen,
       gradient: "from-violet-600 to-purple-600",
       bgColor: "bg-violet-50",
       textColor: "text-violet-700",
+    },
+    {
+      label: "Total Quizzes",
+      value: dashboardData.overview.totalQuizzes,
+      icon: BrainCircuit,
+      gradient: "from-purple-600 to-fuchsia-600",
+      bgColor: "bg-purple-50",
+      textColor: "text-purple-700",
     },
   ];
   
@@ -114,8 +114,8 @@ const DashboardPage = () => {
         {/* Recent Activity */}
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
           <div className="flex items-center gap-3 mb-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50">
-              <Clock className="h-5 w-5 text-blue-600" strokeWidth={2} />
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50">
+              <Clock className="h-5 w-5 text-indigo-600" strokeWidth={2} />
             </div>
             <h3 className="text-xl font-semibold text-slate-900">Recent Activity</h3>
           </div>
@@ -129,7 +129,7 @@ const DashboardPage = () => {
                   (doc) => ({
                     id: doc._id,
                     description: doc.title,
-                    timestamp: doc.lastAccessed,
+                    timestamp: doc.lastAccessed || doc.updatedAt || doc.createdAt,
                     link: `/documents/${doc._id}`,
                     type: "Document",
                   }),
@@ -138,8 +138,8 @@ const DashboardPage = () => {
                   (quiz) => ({
                     id: quiz._id,
                     description: quiz.title,
-                    timestamp: quiz.lastAttemted,
-                    link: `/quizzes/${quiz._id}`,
+                    timestamp: quiz.completedAt || quiz.updatedAt || quiz.createdAt,
+                    link: `/quizzes/${quiz._id}/results`,
                     type: "Quiz",
                   }),
                 ),
@@ -152,9 +152,9 @@ const DashboardPage = () => {
                     className="flex items-center justify-between p-4 rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors duration-200"
                   >
                     <div className="flex items-center gap-4 flex-1">
-                      <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${activity.type === "Document" ? "bg-blue-50" : "bg-violet-50"}`}>
+                      <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${activity.type === "Document" ? "bg-indigo-50" : "bg-violet-50"}`}>
                         {activity.type === "Document" ? (
-                          <FileText className="h-5 w-5 text-blue-600" strokeWidth={2} />
+                          <FileText className="h-5 w-5 text-indigo-600" strokeWidth={2} />
                         ) : (
                           <BrainCircuit className="h-5 w-5 text-violet-600" strokeWidth={2} />
                         )}
@@ -172,7 +172,7 @@ const DashboardPage = () => {
                     {activity.link && (
                       <a 
                         href={activity.link} 
-                        className="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-xl transition-colors"
+                        className="px-4 py-2 text-sm font-medium text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-xl transition-colors"
                       >
                         View
                       </a>
