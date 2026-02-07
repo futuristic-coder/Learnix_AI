@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import quizService from "../../services/quizService";
 import PageHeader from "../../components/common/PageHeader";
 import Spinner from "../../components/common/Spinner";
@@ -14,8 +14,9 @@ import {
 } from "lucide-react";
 
 const QuizResultPage = () => {
-
   const { quizId } = useParams();
+  const location = useLocation();
+  const documentIdFromState = location.state?.documentId;
 
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -69,11 +70,20 @@ const getScoreMessage = (score) => {
   return "Better luck next time! keep practicing.";
 };
 
+  const getDocumentLink = () => {
+    // Priority: use state > quiz.document._id > quiz.documentId (object) > quiz.documentId (string)
+    if (documentIdFromState) return `/documents/${documentIdFromState}`;
+    if (quiz.document?._id) return `/documents/${quiz.document._id}`;
+    if (quiz.documentId?._id) return `/documents/${quiz.documentId._id}`;
+    if (quiz.documentId && typeof quiz.documentId === 'string') return `/documents/${quiz.documentId}`;
+    return '/documents';
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50 dark:from-slate-950 dark:to-slate-900 p-6">
       <div className="max-w-5xl mx-auto">
         <Link 
-          to={`/documents/${quiz.documentId?._id || quiz.documentId}`} 
+          to={getDocumentLink()}
           className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 mb-6 transition-colors font-medium"
         >
           <ArrowLeft className="w-5 h-5" />
@@ -86,15 +96,15 @@ const getScoreMessage = (score) => {
         />
 
         {/* Score Summary Card */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-8 mb-8 border border-slate-200 dark:border-slate-700">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-xl p-8 md:p-10 mb-8 border border-slate-200 dark:border-slate-700 backdrop-blur">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-6">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center shadow-lg">
                 <Trophy className="w-10 h-10 text-white" />
               </div>
               <div>
                 <p className="text-slate-600 dark:text-slate-400 text-sm font-medium uppercase tracking-wide mb-2">Your Score</p>
-                <div className={`inline-block bg-gradient-to-r ${getScoreColor(score)} text-white font-bold text-4xl py-3 px-6 rounded-xl shadow-lg`}>
+                <div className={`inline-block bg-gradient-to-r ${getScoreColor(score)} text-white font-bold text-4xl py-3 px-6 rounded-2xl shadow-lg`}>
                   {score}%
                 </div>
                 <p className="text-lg font-semibold text-slate-700 dark:text-slate-300 mt-3">{getScoreMessage(score)}</p>
@@ -102,27 +112,27 @@ const getScoreMessage = (score) => {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-6 md:gap-8">
               <div className="text-center">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900/30 mx-auto mb-2">
-                  <Target className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-indigo-100 dark:bg-indigo-900/40 mx-auto mb-3 shadow-lg">
+                  <Target className="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
                 </div>
-                <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">{totalQuestions}</p>
-                <p className="text-sm text-slate-600 dark:text-slate-400">Total</p>
+                <p className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-100">{totalQuestions}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Total</p>
               </div>
               <div className="text-center">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/30 mx-auto mb-2">
-                  <CheckCircle2 className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
+                <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 mx-auto mb-3 shadow-lg">
+                  <CheckCircle2 className="w-7 h-7 text-emerald-600 dark:text-emerald-400" />
                 </div>
-                <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{correctAnswers}</p>
-                <p className="text-sm text-slate-600 dark:text-slate-400">Correct</p>
+                <p className="text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400">{correctAnswers}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Correct</p>
               </div>
               <div className="text-center">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-rose-100 dark:bg-rose-900/30 mx-auto mb-2">
-                  <XCircle className="w-6 h-6 text-rose-600 dark:text-rose-400" />
+                <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-rose-100 dark:bg-rose-900/40 mx-auto mb-3 shadow-lg">
+                  <XCircle className="w-7 h-7 text-rose-600 dark:text-rose-400" />
                 </div>
-                <p className="text-2xl font-bold text-rose-600 dark:text-rose-400">{incorrectAnswers}</p>
-                <p className="text-sm text-slate-600 dark:text-slate-400">Incorrect</p>
+                <p className="text-2xl md:text-3xl font-bold text-rose-600 dark:text-rose-400">{incorrectAnswers}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Incorrect</p>
               </div>
             </div>
           </div>
@@ -261,7 +271,7 @@ const getScoreMessage = (score) => {
 
         {/* Action Button */}
         <div className="mt-8 flex justify-center">
-          <Link to={`/documents/${quiz.document._id}`}>
+          <Link to={getDocumentLink()}>
             <button className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-violet-700 transition-all duration-200 shadow-lg hover:shadow-xl">
               <BookOpen className="w-5 h-5" />
               Back to Document

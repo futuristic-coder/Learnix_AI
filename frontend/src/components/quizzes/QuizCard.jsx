@@ -21,7 +21,7 @@ const QuizCard = ({quiz, onDelete}) => {
 
       <div className="space-y-5 flex-1">
         {isCompleted && (
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-50 text-amber-700 rounded-full text-sm font-medium w-fit border border-amber-200">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-full text-sm font-medium w-fit border border-amber-200 dark:border-amber-800">
             <Award className="w-4 h-4" />
             <span className="font-semibold">Score: {quiz?.score}%</span>
           </div>
@@ -41,19 +41,19 @@ const QuizCard = ({quiz, onDelete}) => {
         </div>
 
         <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 rounded-lg text-sm font-medium">
             <span className="font-semibold">
               {quiz.questions.length}{" "}
               {quiz.questions.length === 1 ? "Question" : "Questions"}
             </span>
           </div>
           {!isCompleted && (
-            <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded-full">Not started</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded-full">Not started</span>
           )}
         </div>
       </div>
 
-      <div className="mt-6 pt-4 border-t border-slate-100">
+      <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
         {isCompleted ? (
           <Link to={`/quizzes/${quiz._id}/results`} className="block">
             <button className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all duration-200 font-semibold shadow-md hover:shadow-lg">

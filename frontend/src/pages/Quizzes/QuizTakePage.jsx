@@ -57,21 +57,21 @@ const QuizTakePage = () => {
     setSubmitting(true);
     try{
       const formattedAnswers = Object.keys(selectedAnswers).map(questionId => {
-  const question = quiz.questions.find(q => q._id === questionId);
-  const questionIndex = quiz.questions.findIndex(q => q._id === questionId);
-  const optionIndex = selectedAnswers[questionId];
-  const selectedAnswer = question.options[optionIndex];
-  return { questionIndex, selectedAnswer };
-});
+        const question = quiz.questions.find(q => q._id === questionId);
+        const questionIndex = quiz.questions.findIndex(q => q._id === questionId);
+        const optionIndex = selectedAnswers[questionId];
+        const selectedAnswer = question.options[optionIndex];
+        return { questionIndex, selectedAnswer };
+      });
 
-await quizService.submitQuiz(quizId, formattedAnswers);
-toast.success("Quiz submitted successfully!");
-navigate(`/quizzes/${quizId}/results`);
-} catch (error) {
-  toast.error(error.message || "Failed to submit quiz.");
-} finally {
-  setSubmitting(false);
-}
+      await quizService.submitQuiz(quizId, formattedAnswers);
+      toast.success("Quiz submitted successfully!");
+      navigate(`/quizzes/${quizId}/results`, { state: { documentId: quiz.documentId } });
+    } catch (error) {
+      toast.error(error.message || "Failed to submit quiz.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (loading) {
@@ -156,7 +156,7 @@ navigate(`/quizzes/${quizId}/results`);
                   className={`shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
                     isSelected 
                       ? "border-indigo-500 bg-indigo-500" 
-                      : "border-slate-400"
+                      : "border-slate-400 dark:border-slate-500"
                   }`}
                 >
                   {isSelected && (
@@ -222,46 +222,45 @@ navigate(`/quizzes/${quizId}/results`);
           </Button>
         )}
       </div>
-      {/* Question Navigation */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-md p-6">
-        <h4 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">Question Navigation</h4>
-        <div className="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-3">
-          {quiz.questions.map((_, index) => {
-            const isAnsweredQuestion = selectedAnswers.hasOwnProperty(quiz.questions[index]._id);
-            const isCurrent = index === currentQuestionIndex;
-            return (
-              <button
-                key={index}
-                onClick={() => setCurrentQuestionIndex(index)}
-                disabled={submitting}
-                className={`w-12 h-12 rounded-lg font-semibold transition-all duration-200 ${
-                  isCurrent 
-                    ? "bg-gradient-to-br from-indigo-600 to-violet-600 text-white shadow-lg scale-110" 
-                    : isAnsweredQuestion 
-                    ? "bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-900/60" 
-                    : "bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600"
-                } disabled:opacity-50 disabled:cursor-not-allowed`}
-              >
-                {index + 1}
-              </button>
-            );
-          })}
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-md p-6">
+          <h4 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">Question Navigation</h4>
+          <div className="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-3">
+            {quiz.questions.map((_, index) => {
+              const isAnsweredQuestion = selectedAnswers.hasOwnProperty(quiz.questions[index]._id);
+              const isCurrent = index === currentQuestionIndex;
+              return (
+                <button
+                  key={index}
+                  onClick={() => setCurrentQuestionIndex(index)}
+                  disabled={submitting}
+                  className={`w-12 h-12 rounded-lg font-semibold transition-all duration-200 ${
+                    isCurrent 
+                      ? "bg-gradient-to-br from-indigo-600 to-violet-600 text-white shadow-lg scale-110" 
+                      : isAnsweredQuestion 
+                      ? "bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-200 dark:hover:bg-indigo-900/60" 
+                      : "bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600"
+                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                >
+                  {index + 1}
+                </button>
+              );
+            })}
+          </div>
+          <div className="flex gap-6 mt-6 text-sm">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded bg-gradient-to-br from-indigo-600 to-violet-600" />
+              <span className="text-slate-600 dark:text-slate-400">Current</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded bg-indigo-100 dark:bg-indigo-900/40" />
+              <span className="text-slate-600 dark:text-slate-400">Answered</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded bg-slate-200 dark:bg-slate-700" />
+              <span className="text-slate-600 dark:text-slate-400">Not Answered</span>
+            </div>
+          </div>
         </div>
-        <div className="flex gap-6 mt-6 text-sm">
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-gradient-to-br from-indigo-600 to-violet-600" />
-            <span className="text-slate-600 dark:text-slate-400">Current</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-indigo-100 dark:bg-indigo-900/40" />
-            <span className="text-slate-600 dark:text-slate-400">Answered</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-slate-200 dark:bg-slate-700" />
-            <span className="text-slate-600 dark:text-slate-400">Not Answered</span>
-          </div>
-        </div>
-      </div>
       </div>
     </div>
   );

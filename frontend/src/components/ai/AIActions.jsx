@@ -59,14 +59,14 @@ const AIActions = () => {
     <>
       <div className="w-full space-y-6">
         {/* Header Section */}
-        <div className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl border border-orange-100 p-6 shadow-sm">
+        <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 rounded-xl border border-orange-100 dark:border-orange-800/30 p-6 shadow-sm">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-gradient-to-br from-orange-400 to-orange-500 rounded-lg">
               <Sparkles size={24} className="text-white" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-gray-900">AI Assistant</h3>
-              <p className="text-sm text-gray-600">Powered by advanced AI</p>
+              <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">AI Assistant</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Powered by advanced AI</p>
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@ const AIActions = () => {
             <button
               onClick={handleGenerateSummary}
               disabled={loadingAction === "summary"}
-              className="w-full mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+              className="w-full mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 dark:disabled:bg-slate-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
             >
               {loadingAction === "summary" ? (
                 <>
@@ -130,7 +130,7 @@ const AIActions = () => {
                 <button
                   type="submit"
                   disabled={loadingAction === "explain" || !concept.trim()}
-                  className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-300 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+                  className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-300 dark:disabled:bg-slate-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
                 >
                   {loadingAction === "explain" ? (
                     <>
