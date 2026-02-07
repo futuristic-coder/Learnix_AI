@@ -3,8 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import documentService from "../../services/documentService";
 import Spinner from "../../components/common/Spinner";
 import toast from "react-hot-toast";
-import { ArrowLeft, ExternalLink } from "lucide-react";
-import PageHeader from "../../components/common/PageHeader";
+import { ArrowLeft, ExternalLink, FileText } from "lucide-react";
 import Tabs from "../../components/common/Tabs";
 import ChatInterface from "../../components/chats/ChatInterface";
 import AIActions from "../../components/ai/AIActions";
@@ -126,17 +125,42 @@ const DocumentDetailPage = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
-      <div>
-        <Link to="/documents" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-indigo-700 dark:hover:text-indigo-400">
-          <ArrowLeft size={16} />
+    <div className="max-w-7xl mx-auto relative">
+      {/* Animated background blobs */}
+      <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-indigo-200/30 blur-3xl dark:bg-indigo-900/20 animate-pulse" />
+      <div className="absolute top-40 -left-20 h-72 w-72 rounded-full bg-violet-200/30 blur-3xl dark:bg-violet-900/20 animate-pulse" style={{animationDelay: '2s'}} />
+      
+      <div className="space-y-6 relative z-10">
+        {/* Back Button */}
+        <Link to="/documents" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-indigo-700 dark:hover:text-indigo-400 group transition-colors">
+          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
           Back to Documents
         </Link>
+
+        {/* Header Section */}
+        <div className="relative overflow-hidden rounded-3xl border border-slate-200/50 dark:border-slate-700/50 bg-gradient-to-br from-white via-slate-50 to-blue-50/30 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 backdrop-blur p-8 md:p-12">
+          <div className="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-gradient-to-br from-indigo-400/20 to-violet-400/20 blur-3xl dark:from-indigo-600/20 dark:to-violet-600/20" />
+          <div className="relative">
+            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-50 to-violet-50 dark:from-indigo-950/50 dark:to-violet-950/50 px-4 py-2 border border-indigo-200/50 dark:border-indigo-800/50 mb-4">
+              <div className="h-2 w-2 rounded-full bg-indigo-600 dark:bg-indigo-400 animate-pulse"></div>
+              <span className="text-xs font-semibold text-indigo-700 dark:text-indigo-300">DOCUMENT</span>
+            </div>
+            <div className="flex items-start gap-4">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 to-indigo-200 dark:from-indigo-900/40 dark:to-indigo-800/40 shadow-lg">
+                <FileText className="h-8 w-8 text-indigo-700 dark:text-indigo-300" strokeWidth={2} />
+              </div>
+              <div>
+                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mt-1">
+                  {document.data.title}
+                </h1>
+                <p className="text-slate-600 dark:text-slate-400 mt-2 text-sm md:text-base">Explore content, create flashcards, and take quizzes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <Tabs tabs={tabs} activeTab={activeTab} onTabChange={handleTabChange} />
       </div>
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6">
-        <PageHeader title={document.data.title} />
-      </div>
-      <Tabs tabs={tabs} activeTab={activeTab} onTabChange={handleTabChange} />
     </div>
   );
 };
