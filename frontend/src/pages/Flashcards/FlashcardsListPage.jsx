@@ -1,9 +1,8 @@
 import React,{useState,useEffect} from 'react';
-import { Plus } from 'lucide-react';
+import { Plus, Sparkles, BookOpen } from 'lucide-react';
 import flashcardService from "../../services/flashcardService";
 import documentService from "../../services/documentService";
 import aiService from "../../services/aiService";
-import PageHeader from "../../components/common/PageHeader";
 import Spinner from "../../components/common/Spinner";
 import EmptyState from "../../components/common/EmptyState";
 import FlashcardSetCard from '../../components/flashcards/FlashcardSetCard';
@@ -85,12 +84,39 @@ const FlashcardsListPage = () => {
 
   return (
     <div className="max-w-7xl mx-auto space-y-6">
-      <PageHeader title="Flashcard Sets" subtitle="Generate and review flashcards across your documents.">
-        <Button onClick={() => setIsModalOpen(true)} className="flex items-center gap-2">
-          <Plus size={16} />
-          Generate Flashcards
-        </Button>
-      </PageHeader>
+      {/* Hero Section */}
+      <div className="relative overflow-hidden rounded-3xl border border-slate-200/50 dark:border-slate-700/50 bg-gradient-to-br from-white via-slate-50 to-violet-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-violet-950/30 p-8 shadow-sm">
+        {/* Animated Backgrounds */}
+        <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-violet-200/30 dark:bg-violet-900/20 blur-3xl animate-pulse" />
+        <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-indigo-200/30 dark:bg-indigo-900/20 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        
+        <div className="relative flex items-start justify-between">
+          <div className="flex items-start gap-6">
+            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-100 to-violet-200 dark:from-violet-900/40 dark:to-violet-800/40 shadow-lg">
+              <Sparkles className="h-10 w-10 text-violet-700 dark:text-violet-300" />
+            </div>
+            <div className="flex-1">
+              <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">
+                Flashcard Sets
+              </h1>
+              <p className="text-slate-600 dark:text-slate-400 text-lg">
+                AI-powered flashcards to accelerate your learning
+              </p>
+              <div className="mt-4 flex items-center gap-3 text-sm">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur">
+                  <BookOpen className="h-4 w-4 text-violet-600 dark:text-violet-400" />
+                  <span className="font-medium text-slate-900 dark:text-slate-100">{flashcardSets.length} Sets</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <Button onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 shrink-0">
+            <Plus size={16} />
+            Generate Flashcards
+          </Button>
+        </div>
+      </div>
+      
       {renderContent()}
 
       <Modal
@@ -101,15 +127,27 @@ const FlashcardsListPage = () => {
         }}
         title="Generate Flashcards"
       >
-        <div className="space-y-4">
+        <div className="space-y-6">
+          <div className="p-4 rounded-xl bg-gradient-to-br from-violet-50 to-indigo-50 dark:from-violet-900/20 dark:to-indigo-900/20 border border-violet-200 dark:border-violet-800/30">
+            <div className="flex items-start gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-violet-500">
+                <Sparkles className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-slate-900 dark:text-slate-100 mb-1">AI-Powered Generation</h4>
+                <p className="text-sm text-slate-600 dark:text-slate-400">Select a document and our AI will automatically create flashcards from its content.</p>
+              </div>
+            </div>
+          </div>
+          
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Select Document
             </label>
             <select
               value={selectedDocId}
               onChange={(e) => setSelectedDocId(e.target.value)}
-              className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 dark:focus:ring-violet-400"
             >
               <option value="">-- Choose a document --</option>
               {documents.map((doc) => (
@@ -119,7 +157,8 @@ const FlashcardsListPage = () => {
               ))}
             </select>
           </div>
-          <div className="flex justify-end gap-3">
+          
+          <div className="flex justify-end gap-3 pt-2">
             <Button
               variant="secondary"
               onClick={() => {

@@ -5,11 +5,12 @@ import {
   ChevronLeft,
   ChevronRight,
   Trash2,
+  BookOpen,
+  Layers,
 } from "lucide-react";
 import toast from "react-hot-toast";
 
 import flashcardService from "../../services/flashcardService";
-import PageHeader from "../../components/common/PageHeader";
 import Spinner from "../../components/common/Spinner";
 import EmptyState from "../../components/common/EmptyState";
 import Button from "../../components/common/Button";
@@ -143,7 +144,7 @@ const FlashcardPage = () => {
             <ChevronLeft size={16} /> Previous
           </Button>
 
-          <span className="text-sm font-semibold text-slate-600 px-4 py-2 bg-slate-100 rounded-lg min-w-fit">
+          <span className="text-sm font-semibold text-slate-600 dark:text-slate-400 px-6 py-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl min-w-fit border border-slate-200 dark:border-slate-700">
             {currentCardIndex + 1} / {flashcards.length}
           </span>
 
@@ -163,24 +164,52 @@ const FlashcardPage = () => {
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       <div>
-        <Link to={`/documents/${documentId}`} className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium transition-colors">
+        <Link to={`/documents/${documentId}`} className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition-colors">
           <ArrowLeft size={16} /> Back to Document
         </Link>
       </div>
-      <PageHeader title="Flashcards">
-        <div className="flex items-center gap-3">
+      
+      {/* Hero Section */}
+      <div className="relative overflow-hidden rounded-3xl border border-slate-200/50 dark:border-slate-700/50 bg-gradient-to-br from-white via-slate-50 to-violet-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-violet-950/30 p-8 shadow-sm">
+        {/* Animated Backgrounds */}
+        <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-violet-200/30 dark:bg-violet-900/20 blur-3xl animate-pulse" />
+        <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-indigo-200/30 dark:bg-indigo-900/20 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        
+        <div className="relative flex items-start justify-between">
+          <div className="flex items-start gap-6">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-100 to-violet-200 dark:from-violet-900/40 dark:to-violet-800/40 shadow-lg">
+              <Layers className="h-8 w-8 text-violet-700 dark:text-violet-300" />
+            </div>
+            <div className="flex-1">
+              <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">
+                Flashcards
+              </h1>
+              <p className="text-slate-600 dark:text-slate-400 text-lg">
+                Review and master your learning materials
+              </p>
+              {!loading && flashcards.length > 0 && (
+                <div className="mt-4 flex items-center gap-3 text-sm">
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur">
+                    <BookOpen className="h-4 w-4 text-violet-600 dark:text-violet-400" />
+                    <span className="font-medium text-slate-900 dark:text-slate-100">{flashcards.length} Cards</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
           {!loading && flashcards.length > 0 && (
             <Button
               variant="danger"
               onClick={() => setIsDeleteModalOpen(true)}
               disabled={deleting}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 shrink-0"
             >
               <Trash2 size={16} /> Delete Set
             </Button>
           )}
         </div>
-      </PageHeader>
+      </div>
+      
       {renderFlashcardContent()}
       <Modal
         isOpen={isDeleteModalOpen}
@@ -188,10 +217,12 @@ const FlashcardPage = () => {
         title="Confirm Delete"
       >
         <div className="space-y-6">
-          <p className="text-slate-600">
-            Are you sure you want to delete this flashcard set? This action
-            cannot be undone.
-          </p>
+          <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/30">
+            <p className="text-slate-900 dark:text-slate-100 font-medium">
+              Are you sure you want to delete this flashcard set? This action cannot be undone.
+            </p>
+          </div>
+          
           <div className="flex justify-end gap-3">
             <Button
               type="button"
