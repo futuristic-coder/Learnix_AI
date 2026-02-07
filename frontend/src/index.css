@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme{
+  --font-display:"Urbanist",sans-serif;
+  --breakpoint-3xl: 1920px;
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --color-accent-500: #f97316;
+  --color-accent-600: #ea580c;
+  --color-surface: #ffffff;
+  --color-bg: #f6f7fb;
+  --color-text: #0f172a;
+  --color-muted: #64748b;
+}
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer base{
+  html{
+    font-family: var(--font-display);
+  }
+  body{
+    background: radial-gradient(1200px 600px at 10% -20%, #eef2ff 0%, transparent 50%),
+      radial-gradient(1000px 500px at 100% 0%, #fff7ed 0%, transparent 50%),
+      var(--color-bg);
+    color: var(--color-text);
+  }
+  html.dark body{
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    color: #e2e8f0;
+  }
+  a{
+    color: var(--color-primary-600);
+  }
+  html.dark a{
+    color: #a5b4fc;
+  }
+  ::selection{
+    background: var(--color-primary-100);
+  }
+  html.dark ::selection{
+    background: #312e81;
+  }
+}
