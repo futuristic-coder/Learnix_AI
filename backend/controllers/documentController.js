@@ -5,7 +5,6 @@ import { extractTextFromPDF } from "../utils/pdfParser.js";
 import { chunkText } from "../utils/textChunker.js";
 import fs from "fs/promises";
 import mongoose from "mongoose";
-import cloudinary from "../config/cloudinary.js";
 
 // @desc    Upload PDF document
 // @route   POST /api/documents/upload
@@ -29,14 +28,8 @@ export const uploadDocument = async (req, res, next) => {
       });
     }
 
-    // Upload file to Cloudinary
-    const cloudinaryResult = await cloudinary.uploader.upload(req.file.path, {
-      resource_type: "auto",
-      folder: "learning-assistant/documents",
-      original_filename: req.file.originalname,
-    });
-
-    const fileUrl = cloudinaryResult.secure_url;
+    const baseUrl = `http://localhost:${process.env.PORT || 8000}`;
+    const fileUrl = `${baseUrl}/uploads/documents/${req.file.filename}`;
 
     const document = await Document.create({
       userId: req.user._id,
@@ -44,7 +37,6 @@ export const uploadDocument = async (req, res, next) => {
       fileName: req.file.originalname,
       filePath: fileUrl,
       fileSize: req.file.size,
-      cloudinaryPublicId: cloudinaryResult.public_id,
       status: "processing",
     });
 
@@ -140,9 +132,7 @@ export const getDocument = async (req, res, next) => {
       _id: req.params.id,
       userId: req.user._id,
     });
-    
     if (!document) {
-      console.log(`Document not found - ID: ${req.params.id}, User: ${req.user._id}`);
       return res.status(404).json({
         success: false,
         error: "Document not found",
@@ -191,11 +181,7 @@ export const deleteDocument = async (req, res, next) => {
       });
     }
 
-    // Delete from Cloudinary if public ID exists
-    if (document.cloudinaryPublicId) {
-      await cloudinary.uploader.destroy(document.cloudinaryPublicId).catch(() => {});
-    }
-    
+    await fs.unlink(document.filePath).catch(() => {});
     await document.deleteOne();
     res.status(200).json({
       success: true,
