@@ -140,7 +140,9 @@ export const getDocument = async (req, res, next) => {
       _id: req.params.id,
       userId: req.user._id,
     });
+    
     if (!document) {
+      console.log(`Document not found - ID: ${req.params.id}, User: ${req.user._id}`);
       return res.status(404).json({
         success: false,
         error: "Document not found",

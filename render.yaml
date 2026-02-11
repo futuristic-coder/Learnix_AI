@@ -4,9 +4,9 @@ services:
     env: node
     region: oregon
     plan: free
+    rootDir: frontend
     buildCommand: npm run build
     startCommand: "npm start"
-    staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
         value: https://learnix-ai-backend.onrender.com
