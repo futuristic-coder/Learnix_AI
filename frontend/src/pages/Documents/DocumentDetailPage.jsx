@@ -51,7 +51,7 @@ const DocumentDetailPage = () => {
     }
 
     // Fallback for relative paths (shouldn't happen with Cloudinary, but kept for safety)
-    const baseUrl = process.env.REACT_APP_API_URL || "https://learnix-ai-backend.onrender.com";
+    const baseUrl = import.meta.env.VITE_API_URL || "https://learnix-ai-backend.onrender.com";
     return `${baseUrl}${filePath.startsWith("/") ? "" : "/"}${filePath}`;
   };
 

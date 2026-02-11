@@ -1,4 +1,4 @@
-export const BASE_URL = "https://learnix-ai-backend.onrender.com";
+export const BASE_URL = import.meta.env.VITE_API_URL || "https://learnix-ai-backend.onrender.com";
 
 export const API_PATHS = {
   AUTH: {
