@@ -1,4 +1,4 @@
-# project name
+## Learnix AI
 
 A full-stack AI learning assistant with a Node/Express backend and a React (Vite) frontend. The backend serves APIs for authentication, documents, flashcards, quizzes, progress tracking, and AI features. The frontend provides the UI for learning workflows.
 
