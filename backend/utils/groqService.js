@@ -146,7 +146,7 @@ ${text.substring(0, 15000)}`;
 
     return questions.slice(0, numQuestions);
   } catch (error) {
-    console.error("Groq API error generating quiz:\", error.message || error);
+    console.error("Groq API error generating quiz:", error.message || error);
     throw new Error(`Failed to generate quiz: ${error.message}`);
   }
 };
