@@ -4,6 +4,16 @@ import authService from "../../services/authService";
 import { BrainCircuit, Mail, Lock, ArrowRight, User, Eye, EyeOff } from "lucide-react";
 import toast from "react-hot-toast";
 
+// Override browser autofill styling for dark mode
+const autofillStyles = `
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px rgba(30, 41, 59, 1) inset !important;
+    -webkit-text-fill-color: rgba(241, 245, 249, 1) !important;
+  }
+`;
+
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -52,6 +62,8 @@ const RegisterPage = () => {
   };
 
   return (
+    <>
+      <style>{autofillStyles}</style>
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-amber-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex items-center justify-center px-4 py-6">
       <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden rounded-3xl bg-white dark:bg-slate-900 shadow-[0_20px_60px_-15px_rgba(15,23,42,0.25)]">
         <div className="hidden lg:flex flex-col justify-between bg-gradient-to-br from-indigo-600 via-violet-600 to-purple-600 p-8 text-white">
@@ -171,7 +183,7 @@ const RegisterPage = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   onFocus={() => setFocusedField("password")}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-12 pr-12 py-2.5 text-lg text-slate-900 dark:text-slate-50 shadow-sm transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900"
+                  className="w-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-12 pr-12 py-2.5 text-xl text-slate-900 dark:text-slate-50 shadow-sm transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900"
                   placeholder="Min. 6 characters"
                   required
                 />
@@ -204,7 +216,7 @@ const RegisterPage = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   onFocus={() => setFocusedField("confirmPassword")}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full rounded-2xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-12 pr-12 py-2.5 text-lg text-slate-900 dark:text-slate-50 placeholder:text-slate-500 dark:placeholder:text-slate-400 shadow-sm transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900"
+                  className="w-full rounded-2xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 px-12 pr-12 py-2.5 text-xl text-slate-900 dark:text-slate-50 placeholder:text-slate-500 dark:placeholder:text-slate-400 shadow-sm transition focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900"
                   placeholder="Re-enter password"
                   required
                 />
@@ -268,6 +280,7 @@ const RegisterPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
