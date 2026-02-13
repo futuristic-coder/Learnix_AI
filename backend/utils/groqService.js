@@ -68,8 +68,8 @@ ${text.substring(0, 15000)}`;
 
     return flashcards.slice(0, count);
   } catch (error) {
-    console.error("Error generating flashcards:", error);
-    throw error;
+    console.error("Error generating flashcards:", error.message || error);
+    throw new Error(`Failed to generate flashcards: ${error.message}`);
   }
 };
 
@@ -146,8 +146,8 @@ ${text.substring(0, 15000)}`;
 
     return questions.slice(0, numQuestions);
   } catch (error) {
-    console.error("Error generating quiz:", error);
-    throw new Error("Failed to generate quiz");
+    console.error("Groq API error generating quiz:\", error.message || error);
+    throw new Error(`Failed to generate quiz: ${error.message}`);
   }
 };
 
@@ -171,8 +171,8 @@ ${text.substring(0, 20000)}`;
 
     return completion.choices[0].message.content;
   } catch (error) {
-    console.error("Groq API error:", error);
-    throw new Error("Failed to generate summary");
+    console.error("Groq API error generating summary:", error.message || error);
+    throw new Error(`Failed to generate summary: ${error.message}`);
   }
 };
 
@@ -205,8 +205,8 @@ Answer:`;
 
     return completion.choices[0].message.content;
   } catch (error) {
-    console.error("Groq API error:", error);
-    throw new Error("Failed to process chat request");
+    console.error("Groq API error in chat:", error.message || error);
+    throw new Error(`Failed to process chat request: ${error.message}`);
   }
 };
 
@@ -232,7 +232,7 @@ ${context.substring(0, 10000)}`;
 
     return completion.choices[0].message.content;
   } catch (error) {
-    console.error("Groq API error:", error);
-    throw new Error("Failed to explain concept");
+    console.error("Groq API error explaining concept:", error.message || error);
+    throw new Error(`Failed to explain concept: ${error.message}`);
   }
 };

@@ -174,8 +174,8 @@ export const chat = async (req, res, next) => {
     }
 
     const relevantChunks = findRelevantChunks(
-      document.chunk,question, 3);
-    const chunkIndices= relevantChunks.map(c=>c.chunkIndex);
+      document.chunks, question, 3);
+    const chunkIndices = relevantChunks.map(c => c.chunkIndex);
 
     let chatHistory= await ChatHistory.findOne({
       userId: req.user._id,
