@@ -4,7 +4,7 @@ import Spinner from "../../components/common/Spinner";
 import authService from "../../services/authService";
 import { useAuth } from "../../context/AuthContent";
 import toast from "react-hot-toast";
-import { User, Mail, Lock, Shield, UserCircle } from "lucide-react";
+import { User, Mail, Lock, Shield, UserCircle, Eye, EyeOff } from "lucide-react";
 
 const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
@@ -15,6 +15,10 @@ const ProfilePage = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -152,13 +156,25 @@ const ProfilePage = () => {
                     <Lock className="h-5 w-5 text-slate-400 dark:text-slate-500" />
                   </div>
                   <input
-                    type="password"
+                    type={showCurrentPassword ? "text" : "password"}
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
                     placeholder="Enter your current password"
-                    className="w-full pl-12 pr-4 py-3 text-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-50 placeholder:text-slate-400 dark:placeholder:text-slate-400 rounded-xl focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent outline-none transition"
+                    className="w-full pl-12 pr-12 py-3 text-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-50 placeholder:text-slate-400 dark:placeholder:text-slate-400 rounded-xl focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent outline-none transition"
                     required
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowCurrentPassword((prev) => !prev)}
+                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors cursor-pointer"
+                    aria-label={showCurrentPassword ? "Hide password" : "Show password"}
+                  >
+                    {showCurrentPassword ? (
+                      <EyeOff className="h-5 w-5" />
+                    ) : (
+                      <Eye className="h-5 w-5" />
+                    )}
+                  </button>
                 </div>
               </div>
               <div>
@@ -168,13 +184,25 @@ const ProfilePage = () => {
                     <Lock className="h-5 w-5 text-slate-400 dark:text-slate-500" />
                   </div>
                   <input
-                    type="password"
+                    type={showNewPassword ? "text" : "password"}
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                     placeholder="Enter your new password"
-                    className="w-full pl-12 pr-4 py-3 text-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-50 placeholder:text-slate-400 dark:placeholder:text-slate-400 rounded-xl focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent outline-none transition"
+                    className="w-full pl-12 pr-12 py-3 text-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-50 placeholder:text-slate-400 dark:placeholder:text-slate-400 rounded-xl focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent outline-none transition"
                     required
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowNewPassword((prev) => !prev)}
+                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors cursor-pointer"
+                    aria-label={showNewPassword ? "Hide password" : "Show password"}
+                  >
+                    {showNewPassword ? (
+                      <EyeOff className="h-5 w-5" />
+                    ) : (
+                      <Eye className="h-5 w-5" />
+                    )}
+                  </button>
                 </div>
               </div>
               <div>
@@ -184,13 +212,25 @@ const ProfilePage = () => {
                     <Lock className="h-5 w-5 text-slate-400 dark:text-slate-500" />
                   </div>
                   <input
-                    type="password"
+                    type={showConfirmPassword ? "text" : "password"}
                     value={confirmNewPassword}
                     onChange={(e) => setConfirmNewPassword(e.target.value)}
                     placeholder="Confirm your new password"
-                    className="w-full pl-12 pr-4 py-3 text-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-50 placeholder:text-slate-400 dark:placeholder:text-slate-400 rounded-xl focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent outline-none transition"
+                    className="w-full pl-12 pr-12 py-3 text-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-50 placeholder:text-slate-400 dark:placeholder:text-slate-400 rounded-xl focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent outline-none transition"
                     required
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword((prev) => !prev)}
+                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors cursor-pointer"
+                    aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                  >
+                    {showConfirmPassword ? (
+                      <EyeOff className="h-5 w-5" />
+                    ) : (
+                      <Eye className="h-5 w-5" />
+                    )}
+                  </button>
                 </div>
               </div>
               <div className="pt-4">
