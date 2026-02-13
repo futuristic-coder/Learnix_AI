@@ -45,4 +45,8 @@ export const API_PATHS = {
   PROGRESS: {
     GET_DASHBOARD: "/api/progress/dashboard",
   },
+
+  PDF: {
+    VIEW_PDF: (documentId) => `/api/pdf/view/${documentId}`,
+  },
 };

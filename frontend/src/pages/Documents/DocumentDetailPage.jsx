@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import documentService from "../../services/documentService";
+import { API_PATHS, BASE_URL } from "../../utils/apiPath";
 import Spinner from "../../components/common/Spinner";
 import toast from "react-hot-toast";
 import { ArrowLeft, ExternalLink, FileText } from "lucide-react";
@@ -39,20 +40,14 @@ const DocumentDetailPage = () => {
 
     fetchDocumentDetails();
   }, [id]);
-  // Helper function to get the full PDF URL
+
+  // Helper function to get the full PDF URL - use backend proxy for inline viewing
   const getPdfUrl = () => {
-    if (!document?.data?.filePath) return null;
-
-    const filePath = document.data.filePath;
-
-    // Cloudinary URLs are already complete, just return them
-    if (filePath.startsWith("http://") || filePath.startsWith("https://")) {
-      return filePath;
-    }
-
-    // Fallback for local paths (shouldn't happen with Cloudinary)
-    const baseUrl = import.meta.env.VITE_API_URL || "https://learnix-ai-backend.onrender.com";
-    return `${baseUrl}${filePath.startsWith("/") ? "" : "/"}${filePath}`;
+    if (!document?.data?._id) return null;
+    
+    // Use backend proxy route that serves PDF with proper inline headers
+    const token = localStorage.getItem("token");
+    return `${BASE_URL}${API_PATHS.PDF.VIEW_PDF(document.data._id)}${token ? `?token=${token}` : ''}`;
   };
 
   const renderContent = () => {

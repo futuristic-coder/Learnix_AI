@@ -28,13 +28,7 @@ export const uploadDocument = async (req, res, next) => {
     }
 
     // Cloudinary provides the secure URL in req.file.path
-    // Modify URL to force inline display instead of download
-    let fileUrl = req.file.path;
-    
-    // For Cloudinary raw files, replace /upload/ with /upload/fl_attachment/ to force inline
-    if (fileUrl.includes('cloudinary.com')) {
-      fileUrl = fileUrl.replace('/upload/', '/upload/fl_attachment/');
-    }
+    const fileUrl = req.file.path;
 
     const document = await Document.create({
       userId: req.user._id,
@@ -45,8 +39,8 @@ export const uploadDocument = async (req, res, next) => {
       status: "processing",
     });
 
-    // Process PDF using the original Cloudinary URL
-    processPDF(document._id, req.file.path).catch((err) => {
+    // Process PDF using the Cloudinary URL
+    processPDF(document._id, fileUrl).catch((err) => {
       console.error("Error processing PDF:", err);
     });
 
