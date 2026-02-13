@@ -85,21 +85,21 @@ const FlashcardsListPage = () => {
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       {/* Hero Section */}
-      <div className="relative overflow-hidden rounded-3xl border border-slate-200/50 dark:border-slate-700/50 bg-gradient-to-br from-white via-slate-50 to-violet-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-violet-950/30 p-8 shadow-sm">
+      <div className="relative overflow-hidden rounded-3xl border border-slate-200/50 dark:border-slate-700/50 bg-gradient-to-br from-white via-slate-50 to-violet-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-violet-950/30 p-4 sm:p-8 shadow-sm">
         {/* Animated Backgrounds */}
         <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-violet-200/30 dark:bg-violet-900/20 blur-3xl animate-pulse" />
         <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-indigo-200/30 dark:bg-indigo-900/20 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
         
-        <div className="relative flex items-start justify-between">
-          <div className="flex items-start gap-6">
-            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-100 to-violet-200 dark:from-violet-900/40 dark:to-violet-800/40 shadow-lg">
+        <div className="relative flex flex-col sm:flex-row items-start sm:justify-between gap-4">
+          <div className="flex items-start gap-4 sm:gap-6 w-full sm:w-auto">
+            <div className="hidden sm:flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-100 to-violet-200 dark:from-violet-900/40 dark:to-violet-800/40 shadow-lg">
               <Sparkles className="h-10 w-10 text-violet-700 dark:text-violet-300" />
             </div>
             <div className="flex-1">
-              <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">
                 Flashcard Sets
               </h1>
-              <p className="text-slate-600 dark:text-slate-400 text-lg">
+              <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
                 AI-powered flashcards to accelerate your learning
               </p>
               <div className="mt-4 flex items-center gap-3 text-sm">
@@ -110,9 +110,10 @@ const FlashcardsListPage = () => {
               </div>
             </div>
           </div>
-          <Button onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 shrink-0">
+          <Button onClick={() => setIsModalOpen(true)} className="flex items-center justify-center gap-2 shrink-0 w-full sm:w-auto">
             <Plus size={16} />
-            Generate Flashcards
+            <span className="hidden sm:inline">Generate Flashcards</span>
+            <span className="sm:hidden">Generate</span>
           </Button>
         </div>
       </div>

@@ -64,30 +64,30 @@ const ProfilePage = () => {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Hero Section */}
-      <div className="relative overflow-hidden rounded-3xl border border-slate-200/50 dark:border-slate-700/50 bg-gradient-to-br from-white via-slate-50 to-indigo-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-950/30 p-8 shadow-sm">
+      <div className="relative overflow-hidden rounded-3xl border border-slate-200/50 dark:border-slate-700/50 bg-gradient-to-br from-white via-slate-50 to-indigo-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-950/30 p-4 sm:p-8 shadow-sm">
         {/* Animated Backgrounds */}
         <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-indigo-200/30 dark:bg-indigo-900/20 blur-3xl animate-pulse" />
         <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-violet-200/30 dark:bg-violet-900/20 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
         
-        <div className="relative flex items-start gap-6">
-          <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 to-indigo-200 dark:from-indigo-900/40 dark:to-indigo-800/40 shadow-lg">
+        <div className="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+          <div className="hidden sm:flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 to-indigo-200 dark:from-indigo-900/40 dark:to-indigo-800/40 shadow-lg">
             <UserCircle className="h-10 w-10 text-indigo-700 dark:text-indigo-300" />
           </div>
           <div className="flex-1">
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">
               Profile Settings
             </h1>
-            <p className="text-slate-600 dark:text-slate-400 text-lg">
+            <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
               Manage your account information and security settings
             </p>
-            <div className="mt-4 flex items-center gap-6 text-sm">
+            <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 text-sm">
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur">
                 <User className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
                 <span className="font-medium text-slate-900 dark:text-slate-100">{username}</span>
               </div>
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/60 dark:bg-slate-800/60 backdrop-blur">
                 <Mail className="h-4 w-4 text-violet-600 dark:text-violet-400" />
-                <span className="font-medium text-slate-900 dark:text-slate-100">{email}</span>
+                <span className="font-medium text-slate-900 dark:text-slate-100 break-all">{email}</span>
               </div>
             </div>
           </div>
