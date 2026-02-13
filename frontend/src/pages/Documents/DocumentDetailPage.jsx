@@ -45,12 +45,13 @@ const DocumentDetailPage = () => {
 
     const filePath = document.data.filePath;
 
+    // Cloudinary URLs are already complete, just return them
     if (filePath.startsWith("http://") || filePath.startsWith("https://")) {
       return filePath;
     }
 
-    const baseUrl = process.env.REACT_APP_API_URL || "https://learnix-ai-backend.onrender.com";
-
+    // Fallback for local paths (shouldn't happen with Cloudinary)
+    const baseUrl = import.meta.env.VITE_API_URL || "https://learnix-ai-backend.onrender.com";
     return `${baseUrl}${filePath.startsWith("/") ? "" : "/"}${filePath}`;
   };
 

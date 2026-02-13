@@ -20,7 +20,6 @@ export const uploadDocument = async (req, res, next) => {
     }
     const { title } = req.body;
     if (!title) {
-      await fs.unlink(req.file.path);
       return res.status(400).json({
         success: false,
         error: "Please provide a document title",
@@ -28,8 +27,8 @@ export const uploadDocument = async (req, res, next) => {
       });
     }
 
-    const baseUrl = `http://localhost:${process.env.PORT || 8000}`;
-    const fileUrl = `${baseUrl}/uploads/documents/${req.file.filename}`;
+    // Cloudinary provides the secure URL in req.file.path
+    const fileUrl = req.file.path;
 
     const document = await Document.create({
       userId: req.user._id,
@@ -40,7 +39,8 @@ export const uploadDocument = async (req, res, next) => {
       status: "processing",
     });
 
-    processPDF(document._id, req.file.path).catch((err) => {
+    // Process PDF using the Cloudinary URL
+    processPDF(document._id, fileUrl).catch((err) => {
       console.error("Error processing PDF:", err);
     });
 
@@ -50,10 +50,6 @@ export const uploadDocument = async (req, res, next) => {
       message: "Document uploaded successfully and is being processed",
     });
   } catch (error) {
-    // Clean up file on error
-    if (req.file) {
-      await fs.unlink(req.file.path).catch(() => {});
-    }
     next(error);
   }
 };
