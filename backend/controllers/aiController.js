@@ -173,16 +173,41 @@ export const chat = async (req, res, next) => {
       });
     }
 
-    const relevantChunks = findRelevantChunks(
-      document.chunks, question, 3);
+    // Find relevant chunks - if no chunks array, use extracted text
+    let relevantChunks = [];
+    if (document.chunks && document.chunks.length > 0) {
+      relevantChunks = findRelevantChunks(document.chunks, question, 5);
+    }
+    
+    // If no relevant chunks found, create chunks from extracted text
+    if (relevantChunks.length === 0 && document.extractedText) {
+      const { chunkText } = await import("../utils/textChunker.js");
+      const generatedChunks = chunkText(document.extractedText, 500, 50);
+      relevantChunks = findRelevantChunks(generatedChunks, question, 5);
+      
+      // If still no chunks, use first 3 chunks as fallback
+      if (relevantChunks.length === 0) {
+        relevantChunks = generatedChunks.slice(0, 3);
+      }
+    }
+    
+    // Fallback: use full extracted text if no chunks available
+    if (relevantChunks.length === 0 && document.extractedText) {
+      relevantChunks = [{
+        content: document.extractedText.substring(0, 4000),
+        chunkIndex: 0,
+        pageNumber: 0,
+      }];
+    }
+    
     const chunkIndices = relevantChunks.map(c => c.chunkIndex);
 
-    let chatHistory= await ChatHistory.findOne({
+    let chatHistory = await ChatHistory.findOne({
       userId: req.user._id,
       documentId: document._id,
     });
     if(!chatHistory){
-      chatHistory= await ChatHistory.create({
+      chatHistory = await ChatHistory.create({
         userId: req.user._id,
         documentId: document._id,
         messages: [],
@@ -191,13 +216,13 @@ export const chat = async (req, res, next) => {
     const answer = await groqService.chatWithContext(question, relevantChunks);
 
     chatHistory.messages.push(
-      { role: "user", content: question,timestamp:new Date(), relevantChunks:[] },
-      { role: "assistant", content: answer, timestamp:new Date(), relevantChunks: chunkIndices },
+      { role: "user", content: question, timestamp: new Date(), relevantChunks: [] },
+      { role: "assistant", content: answer, timestamp: new Date(), relevantChunks: chunkIndices },
     );
     await chatHistory.save();
     res.status(200).json({
         success: true,
-        data: { question,answer,relevantChunks: chunkIndices, chatHistoryId: chatHistory._id },
+        data: { question, answer, relevantChunks: chunkIndices, chatHistoryId: chatHistory._id },
         message: "Chat response generated successfully",
     });
   } catch (error) {
