@@ -15,6 +15,7 @@ import aiRoutes from "./routes/aiRoutes.js"
 import quizRoutes from "./routes/quizRoutes.js"
 import progressRoutes from "./routes/progressRoutes.js"
 import pdfRoutes from "./routes/pdfRoutes.js"
+import debugRoutes from "./routes/debugRoutes.js"
 
 
 
@@ -48,6 +49,7 @@ app.use('/api/ai', aiRoutes);
 app.use('/api/quizzes', quizRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/pdf', pdfRoutes);
+app.use('/api/debug', debugRoutes);
 
 app.use(errorHandler);
 
