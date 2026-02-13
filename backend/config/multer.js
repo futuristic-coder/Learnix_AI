@@ -14,6 +14,8 @@ const storage = new CloudinaryStorage({
       const originalName = file.originalname.replace(/\.[^/.]+$/, ""); // Remove extension
       return `${uniqueSuffix}-${originalName}`;
     },
+    // Force inline display instead of download
+    flags: "attachment:false",
   },
 });
 
