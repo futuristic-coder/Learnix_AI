@@ -146,20 +146,20 @@ const DocumentListPage = () => {
       
       <div className="space-y-6">
         {/* Hero Section */}
-        <div className="relative overflow-hidden rounded-3xl border border-slate-200/50 dark:border-slate-700/50 bg-gradient-to-br from-white via-slate-50 to-blue-50/30 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 backdrop-blur p-8 md:p-12">
+        <div className="relative overflow-hidden rounded-3xl border border-slate-200/50 dark:border-slate-700/50 bg-gradient-to-br from-white via-slate-50 to-blue-50/30 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 backdrop-blur p-4 sm:p-8 md:p-12">
           <div className="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-gradient-to-br from-indigo-400/20 to-violet-400/20 blur-3xl dark:from-indigo-600/20 dark:to-violet-600/20" />
           <div className="relative">
-            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-50 to-violet-50 dark:from-indigo-950/50 dark:to-violet-950/50 px-4 py-2 border border-indigo-200/50 dark:border-indigo-800/50 mb-4">
+            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-50 to-violet-50 dark:from-indigo-950/50 dark:to-violet-950/50 px-3 sm:px-4 py-1.5 sm:py-2 border border-indigo-200/50 dark:border-indigo-800/50 mb-3 sm:mb-4">
               <div className="h-2 w-2 rounded-full bg-indigo-600 dark:bg-indigo-400 animate-pulse" />
               <span className="text-xs font-semibold text-indigo-700 dark:text-indigo-300">DOCUMENTS</span>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-4">
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white leading-tight">My Documents</h1>
-                <p className="mt-3 text-lg text-slate-600 dark:text-slate-400 max-w-2xl">Upload, organize, and study your learning materials with AI-powered tools.</p>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white leading-tight">My Documents</h1>
+                <p className="mt-2 sm:mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl">Upload, organize, and study your learning materials with AI-powered tools.</p>
               </div>
               {documents.length > 0 && (
-                <Button onClick={() => setIsUploadModalOpen(true)} className="hidden md:flex">
+                <Button onClick={() => setIsUploadModalOpen(true)} className="hidden md:flex shrink-0">
                   <Plus className="h-5 w-5" />
                   Upload Document
                 </Button>
